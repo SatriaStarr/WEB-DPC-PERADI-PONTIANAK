@@ -185,5 +185,15 @@ $jumlah_pending = $data_pending['total'];
         </div>
     </div>
 
+    <!-- 🔔 REALTIME LISTENER -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+        const socket = io("http://80.80.80.135:3000");
+
+        socket.on("data-updated", () => {
+            location.reload();
+        });
+    </script>
+
 </body>
 </html>
