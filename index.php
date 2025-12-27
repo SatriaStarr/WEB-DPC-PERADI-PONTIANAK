@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DPC PERADI Pontianak - Home</title>
-<<<<<<< HEAD
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-=======
+    <title>DPC PERADI Pontianak - Official Web</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
->>>>>>> ac8c5d56e23b8bae5e7c5b84eeacd3aa788bc04b
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         /* --- 1. RESET & DASAR --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,340 +21,120 @@
 
         /* --- 2. NAVBAR (MENU ATAS) --- */
         nav {
-<<<<<<< HEAD
-            position: absolute;
-            /* Agar menumpuk di atas gambar */
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            /* Pastikan di paling atas */
-        }
-
-        /* Logo Area */
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            width: 50px;
-            /* Sesuaikan ukuran logo */
-            height: auto;
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
-        }
-
-        .logo-text {
-            color: white;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-text h3 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            line-height: 1;
-        }
-
-        .logo-text span {
-            font-size: 0.8rem;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-=======
-            position: absolute; top: 0; left: 0; width: 100%;
-            padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
-            z-index: 999;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            position: fixed; /* Fixed agar ikut saat scroll */
+            top: 0; left: 0; width: 100%;
+            padding: 15px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9); /* Hitam Transparan */
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
         }
 
         /* Logo Area */
         .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .logo-img { width: 45px; height: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .logo-img { width: 45px; height: auto; }
         .logo-text { color: white; display: flex; flex-direction: column; }
-        .logo-text h3 { font-size: 1.2rem; font-weight: 800; line-height: 1; }
-        .logo-text span { font-size: 0.8rem; font-weight: 300; letter-spacing: 1px; }
->>>>>>> ac8c5d56e23b8bae5e7c5b84eeacd3aa788bc04b
+        .logo-text h3 { font-size: 1.2rem; font-weight: 800; line-height: 1; letter-spacing: 1px; }
+        .logo-text span { font-size: 0.7rem; font-weight: 300; letter-spacing: 2px; color: #dea057; }
 
         /* Menu Links */
         .nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
         .nav-links li { position: relative; }
         .nav-links a {
-<<<<<<< HEAD
-            text-decoration: none;
-            color: white;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            text-decoration: none; color: white;
+            font-size: 0.85rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px;
             transition: 0.3s ease;
-            padding: 5px 0;
         }
-
-        /* Efek Hover & Active */
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #dea057;
-            /* Warna Emas/Oranye */
-        }
-
-        /* Garis bawah pada menu aktif */
-        .nav-links a.active {
-            border-bottom: 2px solid #dea057;
-        }
+        .nav-links a:hover, .nav-links a.active { color: #dea057; }
 
         /* --- 3. DROPDOWN MENU (LAYANAN) --- */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: rgba(0, 0, 0, 0.9);
-            /* Hitam transparan */
-            min-width: 250px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-            z-index: 1;
-            padding-top: 10px;
-            border-top: 3px solid #dea057;
-            border-radius: 0 0 5px 5px;
-=======
-            text-decoration: none; color: white; font-size: 0.85rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; padding-bottom: 5px;
-        }
-        .nav-links a:hover, .nav-links a.active { color: #dea057; } /* Warna Emas */
-        
-        /* Dropdown */
+        .dropdown { position: relative; }
         .dropdown-content {
             display: none; position: absolute; top: 100%; left: 0;
-            background-color: rgba(0, 0, 0, 0.9); min-width: 250px;
-            padding-top: 10px; border-top: 3px solid #dea057; border-radius: 0 0 5px 5px;
->>>>>>> ac8c5d56e23b8bae5e7c5b84eeacd3aa788bc04b
+            background-color: #1a1a1a; min-width: 250px;
+            padding-top: 10px; border-top: 3px solid #dea057;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
         }
-        .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s; }
-        .dropdown-content a { display: block; padding: 12px 20px; color: white; text-transform: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .dropdown-content a:hover { background-color: #333; color: #dea057; }
-
-<<<<<<< HEAD
-        .dropdown:hover .dropdown-content {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .dropdown-content li {
-            width: 100%;
-        }
-
+        .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s ease; }
         .dropdown-content a {
-            display: block;
-            padding: 12px 20px;
-            color: #fff;
-            text-transform: none;
-            /* Huruf normal */
+            display: block; padding: 12px 20px; color: #ccc;
+            text-transform: none; /* Huruf normal */
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+        .dropdown-content a:hover { background-color: #333; color: #dea057; padding-left: 25px; }
 
-        .dropdown-content a:hover {
-            background-color: #333;
-            color: #dea057;
-            padding-left: 25px;
-            /* Efek geser dikit saat hover */
+        /* Tombol Login Admin */
+        .btn-login-nav {
+            padding: 8px 20px; border: 1px solid #dea057; color: #dea057 !important;
+            border-radius: 30px; transition: 0.3s;
         }
+        .btn-login-nav:hover { background: #dea057; color: black !important; }
 
         /* --- 4. HERO SECTION (GAMBAR UTAMA) --- */
         .hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            /* Tinggi memenuhi layar */
-
-            /* --- GANTI GAMBAR BACKGROUND DI SINI --- */
-            /* Saya pakai gambar gedung random dari Unsplash sebagai contoh */
-            background-image: url('admin/image/peradi-tower.jpg');
-
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-=======
-        /* --- 3. HERO SECTION --- */
-        .hero {
             position: relative; width: 100%; height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');
+            /* Ganti gambar di sini */
+            background-image: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2072&auto=format&fit=crop'); 
             background-size: cover; background-position: center; background-attachment: fixed;
             display: flex; align-items: center; justify-content: center; text-align: center;
->>>>>>> ac8c5d56e23b8bae5e7c5b84eeacd3aa788bc04b
         }
-        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1; }
-        .hero-content { position: relative; z-index: 2; color: white; animation: moveUp 1s ease-out; padding: 0 20px; }
+        /* Overlay Hitam */
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 1; }
+        
+        .hero-content { position: relative; z-index: 2; color: white; padding: 0 20px; animation: moveUp 1s ease-out; }
         .hero-subtitle { font-size: 1.1rem; color: #dea057; font-weight: 700; letter-spacing: 4px; margin-bottom: 10px; text-transform: uppercase; }
-        .hero-title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; text-transform: uppercase; margin-bottom: 20px; text-shadow: 2px 2px 20px rgba(0,0,0,0.8); }
+        .hero-title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; text-transform: uppercase; margin-bottom: 20px; text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8); }
         .hero-desc { font-size: 1.1rem; font-weight: 300; max-width: 700px; margin: 0 auto 30px auto; color: #e0e0e0; }
-        .btn-cta { padding: 12px 30px; border: 2px solid white; color: white; text-decoration: none; font-weight: bold; text-transform: uppercase; transition: 0.3s; display: inline-block; }
-        .btn-cta:hover { background: #dea057; border-color: #dea057; color: white; }
-
-<<<<<<< HEAD
-        /* Overlay Hitam Transparan */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            /* Gelap 60% agar tulisan terbaca */
-            z-index: 1;
+        
+        .btn-cta {
+            display: inline-block; padding: 12px 35px; background: #dea057; color: #1a1a1a;
+            text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            border-radius: 5px; transition: 0.3s;
         }
-=======
-        /* --- 4. VISI MISI --- */
-        .section-visi { padding: 80px 20px; background-color: white; }
-        .section-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .visi-text h2 { font-size: 2.5rem; margin-bottom: 20px; text-transform: uppercase; color: #1a1a1a; }
-        .visi-text h2 span { color: #dea057; }
-        .visi-text p { line-height: 1.8; color: #555; margin-bottom: 15px; font-size: 0.95rem; }
-        .visi-img img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
->>>>>>> ac8c5d56e23b8bae5e7c5b84eeacd3aa788bc04b
+        .btn-cta:hover { background: white; color: #1a1a1a; transform: translateY(-3px); }
 
-        /* --- 5. GALERI --- */
+        /* --- 5. VISI MISI --- */
+        .section-visi { padding: 100px 5%; background-color: white; }
+        .section-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .visi-text h2 { font-size: 2.5rem; margin-bottom: 25px; text-transform: uppercase; color: #1a1a1a; font-weight: 800; border-left: 5px solid #dea057; padding-left: 20px; }
+        .visi-text p { line-height: 1.8; color: #555; margin-bottom: 15px; font-size: 1rem; text-align: justify; }
+        .visi-img img { width: 100%; border-radius: 10px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+
+        /* --- 6. GALERI --- */
         .section-gallery { padding: 80px 20px; background-color: #1a1a1a; color: white; text-align: center; }
-        .gallery-title { font-size: 2.5rem; margin-bottom: 10px; text-transform: uppercase; }
-        .gallery-subtitle { color: #dea057; letter-spacing: 2px; margin-bottom: 40px; display: block; font-weight: 600; }
-        .gallery-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .gallery-item { position: relative; height: 250px; overflow: hidden; border-radius: 5px; cursor: pointer; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .gallery-title { font-size: 2.5rem; margin-bottom: 10px; text-transform: uppercase; color: white; }
+        .gallery-subtitle { color: #dea057; letter-spacing: 2px; margin-bottom: 50px; display: block; font-weight: 600; text-transform: uppercase; }
+        .gallery-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        .gallery-item { position: relative; height: 250px; overflow: hidden; border-radius: 8px; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .gallery-item:hover img { transform: scale(1.1); }
-        .gallery-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 15px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); transform: translateY(100%); transition: 0.3s; }
+        .gallery-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            transform: translateY(100%); transition: 0.3s;
+            color: #dea057; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        }
         .gallery-item:hover .gallery-overlay { transform: translateY(0); }
 
-<<<<<<< HEAD
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: #dea057;
-            /* Warna Oranye */
-            font-weight: 700;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            /* Ukuran Besar */
-            font-weight: 800;
-            line-height: 1.1;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
-        }
-
-        .hero-desc {
-            font-size: 1.2rem;
-            font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            color: #e0e0e0;
-        }
-
-        /* Tombol Login (Opsional, agar mudah masuk admin) */
-        .btn-login {
-            display: inline-block;
-            padding: 10px 30px;
-            border: 2px solid white;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: 0.3s;
-            margin-top: 20px;
-        }
-
-        .btn-login:hover {
-            background-color: #dea057;
-            border-color: #dea057;
-            color: white;
-        }
-
-        /* --- 5. ANIMASI & RESPONSIVE --- */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes moveUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Tampilan HP */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                padding: 20px;
-                background: rgba(0, 0, 0, 0.9);
-                /* Header jadi hitam pekat di HP */
-            }
-
-            .nav-links {
-                flex-direction: column;
-                margin-top: 20px;
-                gap: 15px;
-                width: 100%;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 0.9rem;
-            }
-
-            .dropdown-content {
-                position: relative;
-                background: transparent;
-                box-shadow: none;
-                text-align: center;
-                border-top: none;
-            }
-=======
-        /* --- 6. FOOTER --- */
-        footer { background-color: #111; padding: 40px 20px; text-align: center; color: #888; border-top: 3px solid #dea057; }
-        .footer-logo { width: 40px; margin-bottom: 15px; filter: grayscale(100%); opacity: 0.5; }
+        /* --- 7. FOOTER --- */
+        footer { background-color: #111; padding: 50px 20px; text-align: center; color: #888; border-top: 5px solid #dea057; }
+        .footer-logo { width: 50px; margin-bottom: 15px; opacity: 0.8; }
         .footer-text { font-size: 0.9rem; margin-bottom: 10px; }
-        .copyright { font-size: 0.8rem; margin-top: 20px; border-top: 1px solid #333; padding-top: 20px; }
+        .copyright { font-size: 0.8rem; margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; }
 
-        /* --- ANIMASI & RESPONSIVE --- */
+        /* ANIMASI */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes moveUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            nav { flex-direction: column; padding: 20px; background: #1a1a1a; }
-            .nav-links { flex-direction: column; width: 100%; margin-top: 15px; gap: 15px; }
-            .section-container { grid-template-columns: 1fr; text-align: center; }
-            .hero-title { font-size: 2.2rem; }
->>>>>>> ac8c5d56e23b8bae5e7c5b84eeacd3aa788bc04b
+            nav { padding: 15px 20px; background: #1a1a1a; }
+            .nav-links { display: none; } /* Mobile Menu belum dibuat, hide dulu agar rapi */
+            .section-container { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -369,7 +143,7 @@
 
     <nav>
         <a href="index.php" class="logo-container">
-            <img src="https://img.icons8.com/ios-filled/100/FFFFFF/law.png" alt="Logo PERADI" class="logo-img">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Logo_Peradi.png" alt="Logo PERADI" class="logo-img">
             <div class="logo-text">
                 <h3>PERADI</h3>
                 <span>Data Center</span>
@@ -378,60 +152,47 @@
 
         <ul class="nav-links">
             <li><a href="index.php" class="active">Home</a></li>
-<<<<<<< HEAD
-            <li><a href="#">Perantara</a></li>
-            <li><a href="#">Struktur Pengurus</a></li>
-
-            <li class="dropdown">
-                <a href="#">Layanan ▼</a>
-                <ul class="dropdown-content">
-                    <a href="pkpa.php">PKPA</a>
-                    <a href="upa.php">UPA / Konsultasi</a>
-                    <a href="sumpah.php">Pengangkatan & Sumpah</a>
-=======
-            <li><a href="data_advokat.php">Data Advokat</a></li>
             <li><a href="perantara.php">Perantara</a></li>
             <li><a href="struktur.php">Struktur</a></li>
             
             <li class="dropdown">
-                <a href="#">Layanan ▼</a>
-                <ul class="dropdown-content">
-                    <li><a href="layanan.php#pkpa">PKPA</a></li>
-                    <li><a href="layanan.php#upa">UPA / Konsultasi</a></li>
-                    <li><a href="layanan.php#sumpah">Pengangkatan & Sumpah</a></li>
->>>>>>> ac8c5d56e23b8bae5e7c5b84eeacd3aa788bc04b
-                </ul>
+                <a href="#">Layanan <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <div class="dropdown-content">
+                    <a href="pkpa.php">PKPA</a>
+                    <a href="upa.php">UPA / Konsultasi</a>
+                    <a href="sumpah.php">Pengangkatan & Sumpah</a>
+                </div>
             </li>
 
             <li><a href="galeri.php">Galeri</a></li>
+            
+            <li><a href="login.php" class="btn-login-nav"><i class="fa-solid fa-lock"></i> Admin</a></li>
         </ul>
     </nav>
 
-    <div class="hero">
+    <section class="hero">
         <div class="hero-content">
             <p class="hero-subtitle">Sistem Informasi Manajemen</p>
-            <h1 class="hero-title">
-                DPC PERADI<br>PONTIANAK
-            </h1>
+            <h1 class="hero-title">DPC PERADI<br>PONTIANAK</h1>
             <p class="hero-desc">
                 Wadah tunggal profesi Advokat yang bebas dan mandiri demi tegaknya hukum dan keadilan, serta menjunjung tinggi kode etik profesi.
             </p>
-<<<<<<< HEAD
-
-=======
-            <a href="#visi" class="btn-cta">Tentang Kami ↓</a>
->>>>>>> ac8c5d56e23b8bae5e7c5b84eeacd3aa788bc04b
+            <a href="#visi" class="btn-cta">Tentang Kami</a>
         </div>
-    </div>
+    </section>
 
     <section id="visi" class="section-visi">
         <div class="section-container">
             <div class="visi-text">
                 <h2>Visi & <span>Misi</span></h2>
                 <p><strong>VISI:</strong><br>Menjadi organ negara yang bebas dan mandiri dalam melaksanakan fungsi negara dibidang penegakan hukum.</p>
-                <p><strong>MISI:</strong><br>1. Mengangkat Advokat dan melakukan pengawasan.<br>2. Menyelenggarakan pendidikan khusus profesi Advokat.<br>3. Menegakkan kode etik profesi Advokat Indonesia.</p>
+                <p><strong>MISI:</strong><br>
+                    1. Mengangkat Advokat dan melakukan pengawasan.<br>
+                    2. Menyelenggarakan pendidikan khusus profesi Advokat.<br>
+                    3. Menegakkan kode etik profesi Advokat Indonesia.
+                </p>
                 <br>
-                <a href="struktur.php" style="color: #dea057; font-weight: bold; text-decoration: none;">Lihat Struktur Pengurus →</a>
+                <a href="struktur.php" style="color: #dea057; font-weight: bold; text-decoration: none; border-bottom: 2px solid #dea057;">Lihat Struktur Pengurus →</a>
             </div>
             <div class="visi-img">
                 <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" alt="Meeting Peradi">
@@ -463,20 +224,18 @@
         </div>
         
         <br><br>
-        <a href="galeri.php" class="btn-cta">Lihat Semua Galeri</a>
+        <a href="galeri.php" style="color:white; text-decoration: underline;">Lihat Semua Galeri</a>
     </section>
 
     <footer>
-        <img src="https://img.icons8.com/ios-filled/100/FFFFFF/law.png" alt="Logo" class="footer-logo">
         <h3 style="color: white; margin-bottom: 10px;">DPC PERADI PONTIANAK</h3>
         <p class="footer-text">Jl. Jenderal Ahmad Yani No. 123, Pontianak, Kalimantan Barat</p>
         <p class="footer-text">Email: sekretariat@peradipontianak.or.id | Telp: (0561) 123456</p>
         <div class="copyright">
             &copy; 2025 DPC PERADI Pontianak. All Rights Reserved. <br>
-            Developed by <strong>Tim IT Mahasiswa Polnep</strong>
+            Developed by <strong>Tim IT Magang</strong>
         </div>
     </footer>
 
 </body>
-
 </html>
