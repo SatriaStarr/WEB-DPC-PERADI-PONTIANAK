@@ -40,7 +40,14 @@ if (isset($_GET['id'])) {
         $query_hapus = mysqli_query($conn, "DELETE FROM data_advokat WHERE id_advokat = '$id'");
 
         if ($query_hapus) {
-            // Berhasil, balik ke tabel
+            // 🔔 KIRIM SINYAL KE REALTIME SERVER (Node.js)
+            $ch = curl_init("http://80.80.80.135:3000/notify-update");
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_exec($ch);
+            curl_close($ch);
+
+            // Kembali ke tabel
             header("Location: data_advokat.php?pesan=sukses_hapus");
         } else {
             echo "Gagal menghapus database: " . mysqli_error($conn);
