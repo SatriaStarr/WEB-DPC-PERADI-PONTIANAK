@@ -164,8 +164,7 @@ $total_pending = $d_pending['total'];
         </div>
 
         <div class="nav-menu">
-            <a href="dashboard.php" style="color: white; border-bottom: 2px solid #f59e0b;">Home</a>
-            <a href="data_advokat.php">Data Advokat</a>
+            
             
             <a href="verifikasi_admin.php">
                 Verifikasi Admin
