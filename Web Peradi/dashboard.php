@@ -33,7 +33,7 @@ $total_pending = $d_pending['total'];
         
         body {
             /* Ganti URL ini dengan foto gedung PERADI kamu */
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Gedung_Sate_Bandung_Jawa_Barat.jpg/1200px-Gedung_Sate_Bandung_Jawa_Barat.jpg'); 
+            background-image: url('image/peradi-tower.jpg'); 
             /* Atau gunakan path lokal jika ada: background-image: url('image/gedung_peradi.jpg'); */
             background-size: cover;
             background-position: center;
