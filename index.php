@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPC PERADI Pontianak - Home</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
+
     <style>
         /* --- 1. RESET & DASAR --- */
         * {
@@ -23,7 +24,8 @@
 
         /* --- 2. HEADER & NAVBAR --- */
         nav {
-            position: absolute; /* Agar menumpuk di atas gambar */
+            position: absolute;
+            /* Agar menumpuk di atas gambar */
             top: 0;
             left: 0;
             width: 100%;
@@ -31,7 +33,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 100; /* Pastikan di paling atas */
+            z-index: 100;
+            /* Pastikan di paling atas */
         }
 
         /* Logo Area */
@@ -43,9 +46,10 @@
         }
 
         .logo-img {
-            width: 50px; /* Sesuaikan ukuran logo */
+            width: 50px;
+            /* Sesuaikan ukuran logo */
             height: auto;
-            filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
         }
 
         .logo-text {
@@ -90,11 +94,12 @@
         }
 
         /* Efek Hover & Active */
-        .nav-links a:hover, 
+        .nav-links a:hover,
         .nav-links a.active {
-            color: #dea057; /* Warna Emas/Oranye */
+            color: #dea057;
+            /* Warna Emas/Oranye */
         }
-        
+
         /* Garis bawah pada menu aktif */
         .nav-links a.active {
             border-bottom: 2px solid #dea057;
@@ -106,9 +111,10 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: rgba(0, 0, 0, 0.9); /* Hitam transparan */
+            background-color: rgba(0, 0, 0, 0.9);
+            /* Hitam transparan */
             min-width: 250px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
             z-index: 1;
             padding-top: 10px;
             border-top: 3px solid #dea057;
@@ -128,26 +134,29 @@
             display: block;
             padding: 12px 20px;
             color: #fff;
-            text-transform: none; /* Huruf normal */
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-transform: none;
+            /* Huruf normal */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .dropdown-content a:hover {
             background-color: #333;
             color: #dea057;
-            padding-left: 25px; /* Efek geser dikit saat hover */
+            padding-left: 25px;
+            /* Efek geser dikit saat hover */
         }
 
         /* --- 4. HERO SECTION (GAMBAR UTAMA) --- */
         .hero {
             position: relative;
             width: 100%;
-            height: 100vh; /* Tinggi memenuhi layar */
-            
+            height: 100vh;
+            /* Tinggi memenuhi layar */
+
             /* --- GANTI GAMBAR BACKGROUND DI SINI --- */
             /* Saya pakai gambar gedung random dari Unsplash sebagai contoh */
             background-image: url('admin/image/peradi-tower.jpg');
-            
+
             background-size: cover;
             background-position: center;
             display: flex;
@@ -164,7 +173,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Gelap 60% agar tulisan terbaca */
+            background: rgba(0, 0, 0, 0.6);
+            /* Gelap 60% agar tulisan terbaca */
             z-index: 1;
         }
 
@@ -179,7 +189,8 @@
 
         .hero-subtitle {
             font-size: 1.1rem;
-            color: #dea057; /* Warna Oranye */
+            color: #dea057;
+            /* Warna Oranye */
             font-weight: 700;
             letter-spacing: 4px;
             margin-bottom: 10px;
@@ -187,12 +198,13 @@
         }
 
         .hero-title {
-            font-size: 4rem; /* Ukuran Besar */
+            font-size: 4rem;
+            /* Ukuran Besar */
             font-weight: 800;
             line-height: 1.1;
             text-transform: uppercase;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
         }
 
         .hero-desc {
@@ -224,13 +236,27 @@
 
         /* --- 5. ANIMASI & RESPONSIVE --- */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes moveUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Tampilan HP */
@@ -238,20 +264,25 @@
             nav {
                 flex-direction: column;
                 padding: 20px;
-                background: rgba(0,0,0,0.9); /* Header jadi hitam pekat di HP */
+                background: rgba(0, 0, 0, 0.9);
+                /* Header jadi hitam pekat di HP */
             }
+
             .nav-links {
                 flex-direction: column;
                 margin-top: 20px;
                 gap: 15px;
                 width: 100%;
             }
+
             .hero-title {
                 font-size: 2.5rem;
             }
+
             .hero-subtitle {
                 font-size: 0.9rem;
             }
+
             .dropdown-content {
                 position: relative;
                 background: transparent;
@@ -262,6 +293,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -277,13 +309,13 @@
             <li><a href="index.php" class="active">Home</a></li>
             <li><a href="#">Perantara</a></li>
             <li><a href="#">Struktur Pengurus</a></li>
-            
+
             <li class="dropdown">
                 <a href="#">Layanan ▼</a>
                 <ul class="dropdown-content">
-                    <li><a href="#">PKPA</a></li>
-                    <li><a href="#">UPA / Konsultasi</a></li>
-                    <li><a href="#">Pengangkatan & Sumpah</a></li>
+                    <a href="pkpa.php">PKPA</a>
+                    <a href="upa.php">UPA / Konsultasi</a>
+                    <a href="sumpah.php">Pengangkatan & Sumpah</a>
                 </ul>
             </li>
 
@@ -301,9 +333,10 @@
             <p class="hero-desc">
                 Wadah tunggal profesi Advokat yang bebas dan mandiri demi tegaknya hukum dan keadilan.
             </p>
-            
-            </div>
+
+        </div>
     </div>
 
 </body>
+
 </html>
