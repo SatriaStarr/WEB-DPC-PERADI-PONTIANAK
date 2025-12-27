@@ -33,7 +33,7 @@ $total_pending = $d_pending['total'];
         
         body {
             /* Ganti URL ini dengan foto gedung PERADI kamu */
-            background-image: url('image/peradi-tower.jpg'); 
+            background-image: url('../image/peradi-tower.jpg'); 
             /* Atau gunakan path lokal jika ada: background-image: url('image/gedung_peradi.jpg'); */
             background-size: cover;
             background-position: center;
