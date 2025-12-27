@@ -10,20 +10,29 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background-color: #f9f9f9; color: #333; scroll-behavior: smooth; /* Agar scroll halus */ }
         
-        /* NAVBAR COPY DARI STRUKTUR.PHP (Sama Persis) */
-        nav { position: absolute; top: 0; left: 0; width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(0,0,0,0.8); }
+        /* NAVBAR MASTER CSS */
+        nav {
+            position: absolute; top: 0; left: 0; width: 100%;
+            padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; background: rgba(0,0,0,0.8);
+        }
         .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .logo-img { width: 50px; height: auto; }
+        .logo-img { width: 45px; height: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
         .logo-text { color: white; display: flex; flex-direction: column; }
-        .logo-text h3 { font-size: 1.2rem; font-weight: 800; }
-        .logo-text span { font-size: 0.8rem; font-weight: 300; }
-        .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { text-decoration: none; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
+        .logo-text h3 { font-size: 1.2rem; font-weight: 800; line-height: 1; }
+        .logo-text span { font-size: 0.8rem; font-weight: 300; letter-spacing: 1px; }
+        
+        .nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
+        .nav-links li { position: relative; }
+        .nav-links a { text-decoration: none; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; padding-bottom: 5px; }
         .nav-links a:hover, .nav-links a.active { color: #dea057; }
-        .dropdown { position: relative; }
-        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: rgba(0,0,0,0.9); min-width: 220px; padding-top: 10px; border-top: 3px solid #dea057; }
-        .dropdown:hover .dropdown-content { display: block; }
-        .dropdown-content a { display: block; padding: 12px 20px; border-bottom: 1px solid #444; color: white; }
+        
+        /* DROPDOWN */
+        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: rgba(0,0,0,0.9); min-width: 250px; padding-top: 10px; border-top: 3px solid #dea057; border-radius: 0 0 5px 5px; }
+        .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s; }
+        .dropdown-content a { display: block; padding: 12px 20px; color: white; text-transform: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .dropdown-content a:hover { background-color: #333; color: #dea057; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* HEADER */
         .page-header { position: relative; width: 100%; height: 50vh; background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; }
@@ -44,21 +53,28 @@
 
     <nav>
         <a href="index.php" class="logo-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Logo_Peradi.png" alt="Logo" class="logo-img">
-            <div class="logo-text"><h3>PERADI</h3><span>Data Center</span></div>
+            <img src="https://img.icons8.com/ios-filled/100/FFFFFF/law.png" alt="Logo PERADI" class="logo-img">
+            <div class="logo-text">
+                <h3>PERADI</h3>
+                <span>Data Center</span>
+            </div>
         </a>
+
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
+            <li><a href="data_advokat.php">Data Advokat</a></li>
             <li><a href="perantara.php">Perantara</a></li>
-            <li><a href="struktur.php">Struktur Pengurus</a></li>
+            <li><a href="struktur.php">Struktur</a></li>
+            
             <li class="dropdown">
                 <a href="#" class="active">Layanan ▼</a>
-                <div class="dropdown-content">
-                    <a href="#pkpa">PKPA</a>
-                    <a href="#upa">UPA / Konsultasi</a>
-                    <a href="#sumpah">Pengangkatan & Sumpah</a>
-                </div>
+                <ul class="dropdown-content">
+                    <li><a href="layanan.php#pkpa">PKPA</a></li>
+                    <li><a href="layanan.php#upa">UPA / Konsultasi</a></li>
+                    <li><a href="layanan.php#sumpah">Pengangkatan & Sumpah</a></li>
+                </ul>
             </li>
+
             <li><a href="galeri.php">Galeri</a></li>
         </ul>
     </nav>
