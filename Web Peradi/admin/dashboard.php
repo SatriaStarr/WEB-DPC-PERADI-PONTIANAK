@@ -2,32 +2,20 @@
 session_start();
 include 'koneksi.php';
 
-// --- TAMBAHAN BARU: ANTI CACHE (Supaya tombol Back tidak berfungsi) ---
-header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
-header("Pragma: no-cache"); // HTTP 1.0.
-header("Expires: 0"); // Proxies.
-// ---------------------------------------------------------------------
-
 // Cek Login
 if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
     header("Location: index.php?pesan=belum_login");
     exit;
 }
-// 2. HITUNG DATA REALTIME DARI DATABASE
-// Hitung jumlah admin yang masih pending (butuh verifikasi)
-$query_pending = mysqli_query($conn, "SELECT COUNT(*) as total FROM users WHERE status='pending'");
-$data_pending = mysqli_fetch_assoc($query_pending);
-$jumlah_pending = $data_pending['total'];
 
-// Hitung total advokat (Kita anggap tabel data_advokat sudah ada/nanti dibuat)
-// Pakai error handling biar gak error kalau tabel belum ada
-$jumlah_advokat = 0;
-$cek_tabel = mysqli_query($conn, "SHOW TABLES LIKE 'data_advokat'");
-if(mysqli_num_rows($cek_tabel) > 0){
-    $query_advokat = mysqli_query($conn, "SELECT COUNT(*) as total FROM data_advokat");
-    $data_advokat = mysqli_fetch_assoc($query_advokat);
-    $jumlah_advokat = $data_advokat['total'];
-}
+// Hitung Data (Opsional, biar admin tetap tau info sekilas)
+$q_advokat = mysqli_query($conn, "SELECT COUNT(*) as total FROM data_advokat");
+$d_advokat = mysqli_fetch_assoc($q_advokat);
+$total_advokat = $d_advokat['total'];
+
+$q_pending = mysqli_query($conn, "SELECT COUNT(*) as total FROM users WHERE status='pending'");
+$d_pending = mysqli_fetch_assoc($q_pending);
+$total_pending = $d_pending['total'];
 ?>
 
 <!DOCTYPE html>
@@ -35,155 +23,179 @@ if(mysqli_num_rows($cek_tabel) > 0){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - PERADI Data Center</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>PERADI Data Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="dashboard.css">
+    
+    <style>
+        /* RESET DASAR */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body {
+            /* Ganti URL ini dengan foto gedung PERADI kamu */
+            background-image: url('image/peradi-tower.jpg'); 
+            /* Atau gunakan path lokal jika ada: background-image: url('image/gedung_peradi.jpg'); */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            overflow: hidden; /* Supaya tidak ada scroll */
+        }
+
+        /* OVERLAY GELAP (Biar tulisan putih terbaca jelas) */
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Gelap 60% */
+            z-index: 1;
+        }
+
+        /* NAVBAR TRANSPARAN (Menu Atas) */
+        .navbar {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px;
+            width: 100%;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+        }
+        .logo-area img { height: 50px; } /* Sesuaikan tinggi logo */
+        .logo-text h2 { font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; }
+        .logo-text span { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; display: block; }
+
+        /* MENU NAVIGASI (TEXT ONLY - SEPERTI PERMINTAANMU) */
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        /* Efek Garis Bawah saat Hover */
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: -5px; left: 0;
+            background-color: #f59e0b; /* Warna Kuning Emas */
+            transition: 0.3s;
+        }
+        .nav-menu a:hover { color: white; }
+        .nav-menu a:hover::after { width: 100%; }
+        
+        /* Badge Notifikasi Merah Kecil */
+        .badge-dot {
+            width: 8px; height: 8px; background: #ef4444; border-radius: 50%;
+            display: inline-block; position: absolute; top: -2px; right: -8px;
+        }
+
+        /* KONTEN TENGAH (JUDUL BESAR) */
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            height: 80vh; /* Sisa tinggi layar */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #f59e0b; /* Kuning Emas */
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: 4rem; /* Tulisan Super Besar */
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            padding-top: 30px;
+        }
+        .stat-item h3 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0; }
+        .stat-item p { font-size: 0.9rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; }
+
+    </style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="logo-section">
-            <i class="fa-solid fa-scale-balanced fa-2x"></i>
+    <div class="overlay"></div>
+
+    <nav class="navbar">
+        <div class="logo-area">
+            <i class="fa-solid fa-scale-balanced fa-2x"></i> 
             <div class="logo-text">
                 <h2>PERADI</h2>
                 <span>Data Center</span>
             </div>
         </div>
 
-        <ul class="nav-links">
-            <li class="active">
-                <a href="dashboard.php">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="data_advokat.php">
-                    <i class="fa-solid fa-gavel"></i>
-                    <span>Data Advokat</span>
-                </a>
-            </li>
-            <li>
-                <a href="verifikasi_admin.php" class="menu-verifikasi">
-                    <i class="fa-solid fa-user-shield"></i>
-                    <span>Verifikasi Admin</span>
-                    <?php if($jumlah_pending > 0): ?>
-                        <span class="badge"><?php echo $jumlah_pending; ?></span>
-                    <?php endif; ?>
-                </a>
-            </li>
-        </ul>
-
-        <div class="logout-section">
-            <a href="logout.php" id="btn-logout">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span>Logout</span>
+        <div class="nav-menu">
+            <a href="dashboard.php" style="color: white; border-bottom: 2px solid #f59e0b;">Home</a>
+            <a href="data_advokat.php">Data Advokat</a>
+            
+            <a href="verifikasi_admin.php">
+                Verifikasi Admin
+                <?php if($total_pending > 0): ?>
+                    <span class="badge-dot"></span>
+                <?php endif; ?>
             </a>
+            
+            <a href="#" style="cursor: default; opacity: 0.5;">|</a> <a href="#" style="cursor: default;">Hi, <?php echo $_SESSION['username']; ?></a>
+            <a href="logout.php" onclick="return confirm('Keluar dari sistem?')" style="color: #ef4444;">Logout</a>
+        </div>
+    </nav>
+
+    <div class="hero-content">
+        <div class="hero-subtitle">Sistem Informasi Manajemen</div>
+        <div class="hero-title">
+            DPC PERADI<br>PONTIANAK
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-item">
+                <h3><?php echo $total_advokat; ?></h3>
+                <p>Advokat Terdaftar</p>
+            </div>
+            <div class="stat-item">
+                <h3>Active</h3>
+                <p>Status Server</p>
+            </div>
         </div>
     </div>
 
-    <div class="main-content">
-        <header>
-            <div class="header-title">
-                <h1>Overview</h1>
-                <p>Selamat Datang, <b><?php echo $_SESSION['username']; ?></b></p>
-            </div>
-            <div class="user-profile">
-                <img src="https://ui-avatars.com/api/?name=<?php echo $_SESSION['username']; ?>&background=0D8ABC&color=fff" alt="Profile">
-            </div>
-        </header>
-
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-info">
-                    <h3>Total Advokat</h3>
-                    <h1><?php echo $jumlah_advokat; ?></h1>
-                    <small>Terdaftar Aktif</small>
-                </div>
-                <div class="card-icon blue">
-                    <i class="fa-solid fa-users"></i>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-info">
-                    <h3>Verifikasi Tertunda</h3>
-                    <h1><?php echo $jumlah_pending; ?></h1>
-                    <small>Admin Baru</small>
-                </div>
-                <div class="card-icon orange">
-                    <i class="fa-solid fa-user-clock"></i>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-info">
-                    <h3>Status Server</h3>
-                    <h1 style="color: #2ecc71; font-size: 1.5rem;">Online</h1>
-                    <small>Database Terhubung</small>
-                </div>
-                <div class="card-icon green">
-                    <i class="fa-solid fa-server"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="recent-section">
-            <div class="section-header">
-                <h3>Permintaan Akses Terbaru</h3>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Nama Lengkap</th>
-                        <th>Status</th>
-                        <th>Tanggal Daftar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                    // Ambil 5 user terbaru yang pending
-                    $query_recent = mysqli_query($conn, "SELECT * FROM users WHERE status='pending' ORDER BY created_at DESC LIMIT 5");
-                    
-                    if(mysqli_num_rows($query_recent) > 0) {
-                        while($row = mysqli_fetch_assoc($query_recent)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['username'] . "</td>";
-                            echo "<td>" . $row['nama_lengkap'] . "</td>";
-                            echo "<td><span class='status pending'>Pending</span></td>";
-                            echo "<td>" . $row['created_at'] . "</td>";
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='4' align='center'>Tidak ada permintaan baru.</td></tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.getElementById('btn-logout').addEventListener('click', function(e){
-            e.preventDefault();
-            Swal.fire({
-                title: 'Yakin ingin keluar?',
-                text: "Sesi Anda akan berakhir.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Logout'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = 'logout.php';
-                }
-            })
-        });
-    </script>
 </body>
 </html>
