@@ -53,57 +53,7 @@ $jumlah_pending = $data_pending['total'];
 </head>
 
 <body>
-
-    <div class="sidebar">
-        <div class="logo-section">
-            <i class="fa-solid fa-scale-balanced fa-2x"></i>
-            <div class="logo-text">
-                <h2>PERADI</h2><span>Data Center</span>
-            </div>
-        </div>
-        <ul class="nav-links">
-
-            <li>
-                <a href="../index.php">
-                    <i class="fa-solid fa-arrow-left"></i> <span>Layanan Home</span>
-                </a>
-            </li>
-
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0;">
-
-            <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
-                <a href="dashboard.php">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'data_advokat.php' ? 'active' : ''; ?>">
-                <a href="data_advokat.php">
-                    <i class="fa-solid fa-gavel"></i>
-                    <span>Data Advokat</span>
-                </a>
-            </li>
-
-            <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'verifikasi_admin.php' ? 'active' : ''; ?>">
-                <a href="verifikasi_admin.php">
-                    <i class="fa-solid fa-user-shield"></i>
-                    <span>Verifikasi Admin</span>
-                    <?php if (isset($jumlah_pending) && $jumlah_pending > 0): ?>
-                        <span class="badge"><?php echo $jumlah_pending; ?></span>
-                    <?php endif; ?>
-                </a>
-            </li>
-
-        </ul>
-
-        <div class="logout-section">
-            <a href="logout.php" onclick="return confirm('Yakin ingin keluar?')">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span>Logout</span>
-            </a>
-        </div>
-    </div>
+    <?php include __DIR__ . '/partials/sidebar.php'; ?>
     <div class="main-content">
         <header>
             <h1>Verifikasi Pendaftaran</h1>

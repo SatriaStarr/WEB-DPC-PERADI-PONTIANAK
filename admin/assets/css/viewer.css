@@ -1,0 +1,62 @@
+/* ===== PDF VIEWER MODAL ===== */
+.viewer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.viewer-overlay.active {
+    display: flex;
+}
+
+.viewer-container {
+    width: 90%;
+    height: 90%;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.viewer-header {
+    background: #1e3a8a;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.viewer-header h3 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.viewer-close {
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.viewer-body {
+    flex: 1;
+}
+
+.viewer-body iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Responsive (HP) */
+@media (max-width: 768px) {
+    .viewer-container {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}

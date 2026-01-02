@@ -20,11 +20,18 @@ $jumlah_pending = $data_pending['total'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Advokat - PERADI</title>
+
+    <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- ICON -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS UTAMA -->
     <link rel="stylesheet" href="dashboard.css">
 
+    <!-- ✅ CSS VIEWER (TAMBAHKAN DI SINI) -->
+    <link rel="stylesheet" href="assets/css/viewer.css">
     <style>
         /* Header Action (Tombol Tambah & Search) */
         .page-header {
@@ -118,87 +125,7 @@ $jumlah_pending = $data_pending['total'];
 </head>
 
 <body>
-
-    <div class="sidebar">
-        <div class="logo-section">
-            <i class="fa-solid fa-scale-balanced fa-2x"></i>
-            <div class="logo-text">
-                <h2>PERADI</h2><span>Data Center</span>
-            </div>
-        </div>
-
-        <ul class="nav-links">
-
-            <li>
-                <a href="../index.php">
-                    <i class="fa-solid fa-arrow-left"></i> <span>Layanan Home</span>
-                </a>
-            </li>
-
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0;">
-
-            <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
-                <a href="dashboard.php">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'data_advokat.php' ? 'active' : ''; ?>">
-                <a href="data_advokat.php">
-                    <i class="fa-solid fa-gavel"></i>
-                    <span>Data Advokat</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="verifikasi_admin.php" class="menu-verifikasi">
-                    <i class="fa-solid fa-user-shield"></i>
-                    <span>Verifikasi Admin</span>
-                    <?php if ($jumlah_pending > 0): ?>
-                        <span class="badge"><?php echo $jumlah_pending; ?></span>
-                    <?php endif; ?>
-                </a>
-            </li>
-
-            <li>
-                <a href="peraturan.php">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                    <span>Peraturan</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="struktur_pengurus.php">
-                    <i class="fa-solid fa-sitemap"></i>
-                    <span>Struktur Pengurus</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="layanan.php">
-                    <i class="fa-solid fa-handshake"></i>
-                    <span>Layanan</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="galeri.php">
-                    <i class="fa-solid fa-image"></i>
-                    <span>Galeri</span>
-                </a>
-            </li>
-
-        </ul>
-
-        <div class="logout-section">
-            <a href="logout.php" onclick="return confirm('Yakin ingin keluar?')">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span>Logout</span>
-            </a>
-        </div>
-    </div>
-
+    <?php include __DIR__ . '/partials/sidebar.php'; ?>
     <div class="main-content">
         <div class="page-header">
             <div>
@@ -219,7 +146,6 @@ $jumlah_pending = $data_pending['total'];
                         <th>Nama Lengkap</th>
                         <th>Kantor Hukum</th>
                         <th>Status</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -286,6 +212,10 @@ $jumlah_pending = $data_pending['total'];
             location.reload();
         });
     </script>
+    
+<!-- JS VIEWER -->
+<script src="assets/js/viewer.js" defer></script>
 
 </body>
+
 </html>
