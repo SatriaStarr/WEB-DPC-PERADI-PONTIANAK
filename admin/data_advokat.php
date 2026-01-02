@@ -128,14 +128,23 @@ $jumlah_pending = $data_pending['total'];
         </div>
 
         <ul class="nav-links">
+
             <li>
+                <a href="../index.php">
+                    <i class="fa-solid fa-arrow-left"></i> <span>Layanan Home</span>
+                </a>
+            </li>
+
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0;">
+
+            <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
                 <a href="dashboard.php">
                     <i class="fa-solid fa-chart-line"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
-            <li class="active">
+            <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'data_advokat.php' ? 'active' : ''; ?>">
                 <a href="data_advokat.php">
                     <i class="fa-solid fa-gavel"></i>
                     <span>Data Advokat</span>
@@ -279,5 +288,4 @@ $jumlah_pending = $data_pending['total'];
     </script>
 
 </body>
-
 </html>
