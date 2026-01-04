@@ -47,6 +47,24 @@
         .service-desc { line-height: 1.8; color: #555; margin-bottom: 20px; }
         .btn-daftar { display: inline-block; padding: 10px 25px; background: #1a1a1a; color: white; text-decoration: none; font-weight: bold; margin-top: 10px; }
         .btn-daftar:hover { background: #dea057; }
+
+        /* FOOTER STYLING */
+        footer { background-color: #1a1a1a; color: #ccc; padding: 50px 20px 20px; margin-top: 50px; }
+        .footer-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 30px; }
+        .footer-logo h3 { color: white; margin-bottom: 15px; font-size: 1.5rem; }
+        .footer-logo h3 span { color: #dea057; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { text-decoration: none; color: #ccc; transition: 0.3s; }
+        .footer-links a:hover { color: #dea057; padding-left: 5px; }
+        .footer-contact h4, .footer-links h4 { color: white; margin-bottom: 20px; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px; }
+        .footer-bottom { text-align: center; margin-top: 20px; font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 20px; background: #1a1a1a; }
+            .nav-links { flex-direction: column; width: 100%; text-align: center; margin-top: 20px; gap: 15px; }
+            .footer-content { text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -62,7 +80,6 @@
 
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
-            <li><a href="data_advokat.php">Data Advokat</a></li>
             <li><a href="perantara.php">Perantara</a></li>
             <li><a href="struktur.php">Struktur</a></li>
             
@@ -119,6 +136,33 @@
             <a href="#" class="btn-daftar">Cek Syarat Sumpah</a>
         </div>
     </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>PERADI <span>Pontianak</span></h3>
+                <p>Menjunjung Tinggi Keadilan & Integritas Profesi Advokat.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Tautan Cepat</h4>
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="perantara.php">Perantara</a></li>
+                    <li><a href="struktur.php">Struktur</a></li>
+                    <li><a href="layanan.php">Layanan</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Hubungi Kami</h4>
+                <p>Jl. Jenderal Ahmad Yani, Pontianak</p>
+                <p>Email: dpc@peradipontianak.org</p>
+                <p>Telp: (0561) 123-4567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DPC PERADI Pontianak. All Rights Reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>

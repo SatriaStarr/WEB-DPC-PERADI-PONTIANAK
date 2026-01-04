@@ -95,7 +95,6 @@
 
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
-            <li><a href="data_advokat.php">Data Advokat</a></li>
             <li><a href="perantara.php" class="active">Perantara</a></li>
             <li><a href="struktur.php">Struktur</a></li>
             
