@@ -14,7 +14,7 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Montserrat', sans-serif; background-color: #f4f6f9; color: #333; overflow-x: hidden; }
 
-        /* --- 2. NAVBAR (SOLID) --- */
+        /* --- 2. NAVBAR (SOLID BLUE) --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%;
             padding: 15px 50px; display: flex; justify-content: space-between; align-items: center;
@@ -26,7 +26,7 @@
         .logo-text h3 { font-size: 1.3rem; font-weight: 800; line-height: 1; letter-spacing: 0.5px; }
         .logo-text span { font-size: 0.75rem; font-weight: 400; letter-spacing: 2px; color: #dea057; }
 
-        .nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
+        .nav-links { list-style: none; display: flex; gap: 20px; align-items: center; }
         .nav-links li { position: relative; }
         .nav-links a { text-decoration: none; color: white; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.3s; opacity: 0.9; }
         .nav-links a:hover, .nav-links a.active { color: #dea057; opacity: 1; }
@@ -41,7 +41,8 @@
         /* --- 3. HERO HEADER --- */
         .page-header {
             position: relative; width: 100%; height: 50vh;
-            background-image: url('admin/image/peradi-tower.jpg'); /* Gambar Palu Hakim */
+            /* Placeholder gambar palu sidang/hukum */
+            background-image: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2072&auto=format&fit=crop'); 
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; text-align: center; margin-top: 60px;
         }
@@ -92,9 +93,9 @@
             <li class="dropdown">
                 <a href="#">Layanan <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></a>
                 <div class="dropdown-content">
-                    <a href="pkpa.php">PKPA</a>
-                    <a href="upa.php">UPA / Konsultasi</a>
-                    <a href="sumpah.php">Pengangkatan & Sumpah</a>
+                    <a href="layanan.php#pkpa">PKPA</a>
+                    <a href="layanan.php#upa">UPA / Konsultasi</a>
+                    <a href="layanan.php#sumpah">Pengangkatan & Sumpah</a>
                 </div>
             </li>
 
@@ -153,6 +154,7 @@
         <h3 style="color: white; margin-bottom: 10px; font-weight:800; letter-spacing:1px;">DPC PERADI PONTIANAK</h3>
         <p class="footer-text">Jl. Jenderal Ahmad Yani No. 123, Pontianak, Kalimantan Barat</p>
         <p class="footer-text">Email: sekretariat@peradipontianak.or.id | Telp: (0561) 123456</p>
+        
         <div class="copyright">
             &copy; 2025 DPC PERADI Pontianak. All Rights Reserved. <br>
             Developed by <strong>Tim IT Magang</strong>

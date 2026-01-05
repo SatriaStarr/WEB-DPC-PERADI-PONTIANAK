@@ -2,7 +2,7 @@
     <div class="logo-section">
         <i class="fa-solid fa-scale-balanced fa-2x"></i>
         <div class="logo-text">
-            <h2>PERADI</h2><span>Pontianak</span>
+            <h2>PERADI</h2><span>Data Center</span>
         </div>
     </div>
 
