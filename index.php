@@ -66,7 +66,7 @@
         /* --- 4. HERO SECTION --- */
         .hero {
             position: relative; width: 100%; height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2072&auto=format&fit=crop'); 
+            background-image: url('admin/image/peradi-tower.jpg'); 
             background-size: cover; background-position: center; background-attachment: fixed;
             display: flex; align-items: center; justify-content: center; text-align: center;
             margin-top: 60px;

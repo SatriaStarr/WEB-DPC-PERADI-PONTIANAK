@@ -41,7 +41,7 @@
         /* --- 3. HERO HEADER --- */
         .page-header {
             position: relative; width: 100%; height: 50vh;
-            background-image: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2072&auto=format&fit=crop'); /* Gambar Palu Hakim */
+            background-image: url('admin/image/peradi-tower.jpg'); /* Gambar Palu Hakim */
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; text-align: center; margin-top: 60px;
         }
