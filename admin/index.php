@@ -30,7 +30,7 @@ if (isset($_COOKIE['ingat_username']) && isset($_COOKIE['ingat_password'])) {
         body {
             background-color: #f4f6f9;
             /* BACKGROUND IMAGE YANG LAMA */
-            background-image: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.9)), url('image/peradi-tower.jpg');
+            background-image: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.9)), url('');
             background-size: cover;
             background-position: center;
             height: 100vh;
