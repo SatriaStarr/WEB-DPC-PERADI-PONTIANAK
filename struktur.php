@@ -5,39 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Struktur Pengurus - DPC PERADI Pontianak</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        /* CSS DASAR */
+        /* --- CSS KHUSUS HALAMAN STRUKTUR --- */
+        /* (CSS Navbar & Footer sudah dihapus karena ikut header.php) */
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background-color: #f9f9f9; color: #333; }
-
-        /* NAVBAR (TEMA BIRU) */
-        nav {
-            position: absolute; top: 0; left: 0; width: 100%;
-            padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
-            z-index: 100; 
-            background: rgba(30, 58, 138, 0.95); /* Biru Tua Transparan */
-            border-bottom: 3px solid #dea057;
-        }
-        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .logo-text { color: white; display: flex; flex-direction: column; }
-        .logo-text h3 { font-size: 1.2rem; font-weight: 800; line-height: 1; }
-        .logo-text span { font-size: 0.8rem; font-weight: 300; letter-spacing: 1px; color: #dea057; }
-        
-        .nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
-        .nav-links li { position: relative; }
-        .nav-links a { text-decoration: none; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; padding-bottom: 5px; }
-        .nav-links a:hover, .nav-links a.active { color: #dea057; }
-        
-        /* DROPDOWN */
-        .dropdown { position: relative; }
-        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: #1e3a8a; min-width: 250px; padding-top: 10px; border-top: 3px solid #dea057; border-radius: 0 0 5px 5px; }
-        .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s; }
-        .dropdown-content a { display: block; padding: 12px 20px; color: white; text-transform: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .dropdown-content a:hover { background-color: #152c69; color: #dea057; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* HERO HEADER */
         .page-header {
@@ -45,71 +18,49 @@
             background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop');
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; text-align: center;
+            
+            /* Margin 0 karena Navbar di header.php sudah Relative */
+            margin-top: 0; 
         }
         .page-header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(30, 58, 138, 0.7); z-index: 1; }
-        .header-content { position: relative; z-index: 2; color: white; margin-top: 40px; }
+        .header-content { position: relative; z-index: 2; color: white; margin-top: 20px; }
         .header-title { font-size: 3rem; font-weight: 800; text-transform: uppercase; }
 
-        /* STRUKTUR CONTENT */
+        /* STRUKTUR CONTENT (Grid Pengurus) */
         .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; text-align: center; }
+        
+        /* Grid Layout */
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 40px; }
-        .pengurus-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: 0.3s; }
-        .pengurus-card:hover { transform: translateY(-10px); }
+        
+        /* Card Style */
+        .pengurus-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: 0.3s; border-bottom: 4px solid transparent; }
+        .pengurus-card:hover { transform: translateY(-10px); border-bottom-color: #dea057; }
+        
+        /* Foto & Teks */
         .foto-profil { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 4px solid #dea057; }
-        .nama { font-weight: 700; font-size: 1.1rem; margin-bottom: 5px; }
+        .nama { font-weight: 700; font-size: 1.1rem; margin-bottom: 5px; color: #333; }
         .jabatan { color: #1e3a8a; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
         
+        /* Ketua Section (Lebih Besar) */
         .ketua-section { margin-bottom: 50px; }
-        .ketua-card { max-width: 350px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-
-        /* FOOTER */
-        footer { background-color: #1e3a8a; padding: 60px 20px; text-align: center; color: white; border-top: 5px solid #dea057; margin-top: 80px; }
-        .footer-text { margin-bottom: 10px; }
-        .copyright { font-size: 0.85rem; margin-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; color: #cbd5e1; }
-
-        @media (max-width: 768px) {
-            nav { flex-direction: column; padding: 20px; background: #1e3a8a; }
-            .nav-links { flex-direction: column; width: 100%; text-align: center; margin-top: 20px; gap: 15px; }
-        }
+        .ketua-card { max-width: 350px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #eee; }
+        .ketua-card .foto-profil { width: 150px; height: 150px; }
+        .ketua-card .nama { font-size: 1.4rem; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.php" class="logo-container">
-            <i class="fa-solid fa-scale-balanced fa-2x" style="color: white;"></i>
-            <div class="logo-text">
-                <h3>PERADI</h3>
-                <span>Data Center</span>
-            </div>
-        </a>
-
-        <ul class="nav-links">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="peraturan.php">Peraturan</a></li>
-            <li><a href="struktur.php" class="active">Struktur</a></li>
-            
-            <li class="dropdown">
-                <a href="#">Layanan <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></a>
-                <ul class="dropdown-content">
-                    <li><a href="layanan.php#pkpa">PKPA</a></li>
-                    <li><a href="layanan.php#upa">UPA</a></li>
-                    <li><a href="layanan.php#sumpah">Pengangkatan & Sumpah</a></li>
-                </ul>
-            </li>
-
-            <li><a href="galeri.php">Galeri</a></li>
-        </ul>
-    </nav>
+    <?php include 'header.php'; ?>
 
     <header class="page-header">
         <div class="header-content">
             <h1 class="header-title">Struktur Organisasi</h1>
-            <p style="color: #dea057; letter-spacing: 2px; font-weight:600;">Periode 2025 - 2030</p>
+            <p style="color: #dea057; letter-spacing: 2px; font-weight:600;">PERIODE 2025 - 2030</p>
         </div>
     </header>
 
     <div class="container">
+        
         <div class="ketua-section">
             <div class="ketua-card">
                 <img src="https://via.placeholder.com/150" alt="Ketua" class="foto-profil">
@@ -137,17 +88,7 @@
         </div>
     </div>
 
-    <footer>
-        <i class="fa-solid fa-scale-balanced fa-3x" style="color: white; margin-bottom: 20px;"></i>
-        <h3 style="color: white; margin-bottom: 10px; font-weight:800; letter-spacing:1px;">DPC PERADI PONTIANAK</h3>
-        <p class="footer-text">Jl. Jenderal Ahmad Yani No. 123, Pontianak, Kalimantan Barat</p>
-        <p class="footer-text">Email: sekretariat@peradipontianak.or.id | Telp: (0561) 123456</p>
-        
-        <div class="copyright">
-            &copy; 2025 DPC PERADI Pontianak. All Rights Reserved. <br>
-            Developed by <strong>Tim IT Magang</strong>
-        </div>
-    </footer>
+    <?php include 'footer.php'; ?>
 
 </body>
 </html>
