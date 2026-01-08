@@ -108,9 +108,22 @@
 
     <ul class="nav-links">
         <li><a href="index.php" class="<?php if($page == 'index.php') echo 'active'; ?>">Home</a></li>
-        
-        <li><a href="peraturan.php" class="<?php if($page == 'peraturan.php') echo 'active'; ?>">Peraturan</a></li>
-        
+       
+        <li class="dropdown">
+            <a href="peraturan.php" class="<?php if($page == 'peraturan.php') echo 'active'; ?>">
+                Peraturan <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i>
+            </a>
+            <div class="dropdown-content">
+                <a href="peraturan.php?doc=uu18">Undang-Undang No. 18 Tahun 2003</a>
+                <a href="peraturan.php?doc=kodeetik">Kode Etik Advokat</a>
+                <a href="peraturan.php?doc=ad">Anggaran Dasar</a>
+                <a href="peraturan.php?doc=prt">Peraturan Rumah Tangga</a>
+                <a href="peraturan.php?doc=magang">Peraturan Magang</a>
+                <a href="peraturan.php?doc=keanggotaan">Peraturan Keanggotaan</a>
+                <a href="peraturan.php?doc=perpindahan">Peraturan Perpindahan Domisili Anggota</a>
+            </div>
+        </li>
+       
         <li><a href="struktur.php" class="<?php if($page == 'struktur.php') echo 'active'; ?>">Struktur</a></li>
 
         <li class="dropdown">
