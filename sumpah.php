@@ -96,7 +96,7 @@
                 <a href="#" class="active">Layanan ▼</a>
                 <div class="dropdown-content">
                     <a href="pkpa.php">PKPA</a>
-                    <a href="upa.php">UPA / Konsultasi</a>
+                    <a href="upa.php">UPA</a>
                     <a href="sumpah.php" style="color:#dea057;">Pengangkatan & Sumpah</a>
                 </div>
             </li>

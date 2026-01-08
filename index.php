@@ -445,7 +445,7 @@
                 <a href="#">Layanan <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></a>
                 <div class="dropdown-content">
                     <a href="pkpa.php">PKPA</a>
-                    <a href="upa.php">UPA / Konsultasi</a>
+                    <a href="upa.php">UPA</a>
                     <a href="sumpah.php">Pengangkatan & Sumpah</a>
                 </div>
             </li>
