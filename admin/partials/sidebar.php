@@ -109,7 +109,7 @@
                 </li>
 
                 <li>
-                    <a href="struktur_admin.php">
+                    <a href="../struktur_pengurus.php">
                         <span><i class="fa-solid fa-sitemap" style="width:20px"></i> Struktur</span>
                     </a>
                 </li>

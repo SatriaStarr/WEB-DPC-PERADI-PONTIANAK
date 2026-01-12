@@ -155,7 +155,7 @@
 
     <header class="page-header">
         <div class="header-content">
-            <h1 class="header-title">PRODUK HUKUM & PERATURAN</h1>
+            <h1 class="header-title">HUKUM & PERATURAN</h1>
             <p class="header-subtitle">Dasar Hukum, Kode Etik & Pedoman Organisasi</p>
         </div>
     </header>

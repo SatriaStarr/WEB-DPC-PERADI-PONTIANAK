@@ -23,7 +23,7 @@
         .hero {
             position: relative; width: 100%; height: 100vh;
             /* Pastikan gambar gedung/landing page ada disini */
-            background-image: url('admin/image/peradi-tower.jpg');
+            background-image: url('admin/image/Depan-kantor.jpeg');
             background-size: cover; background-position: center; background-attachment: fixed;
             display: flex; align-items: center; justify-content: center; text-align: center;
             
