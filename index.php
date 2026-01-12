@@ -23,7 +23,7 @@
         .hero {
             position: relative; width: 100%; height: 100vh;
             /* Pastikan gambar gedung/landing page ada disini */
-            background-image: url('admin/image/Depan-kantor.jpeg');
+            background-image: url('admin/image/peradi-tower.jpg');
             background-size: cover; background-position: center; background-attachment: fixed;
             display: flex; align-items: center; justify-content: center; text-align: center;
             
@@ -100,7 +100,7 @@
                 <a href="struktur.php" style="color: #1e3a8a; font-weight: bold; text-decoration: none; border-bottom: 2px solid #dea057; padding-bottom: 2px;">Lihat Struktur Pengurus <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="visi-img">
-                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" alt="Meeting Peradi">
+                <img src="admin/image/Depan-kantor.jpeg" alt="Meeting Peradi">
             </div>
         </div>
     </section>
@@ -111,8 +111,8 @@
 
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2072&auto=format&fit=crop" alt="Sidang">
-                <div class="gallery-overlay">Sidang Terbuka</div>
+                <img src="admin/image/Dalam-kantor.jpeg" alt="Sidang">
+                <div class="gallery-overlay">Ultah DPC Peradi</div>
             </div>
             <div class="gallery-item">
                 <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1974&auto=format&fit=crop" alt="Rapat">

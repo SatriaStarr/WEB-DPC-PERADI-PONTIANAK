@@ -77,11 +77,4 @@
         &copy; <?php echo date("Y"); ?> DPC PERADI Pontianak. All Rights Reserved. <br>
         Developed by <strong>Tim IT Magang</strong>
     </div>
-
-    <?php if(basename($_SERVER['PHP_SELF']) == 'index.php'): ?>
-        <div class="admin-login-footer">
-            <a href="admin/index.php"><i class="fa-solid fa-lock"></i> Login Admin</a>
-        </div>
-    <?php endif; ?>
-    
 </footer>
