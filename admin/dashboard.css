@@ -93,11 +93,66 @@ body {
     padding: 30px;
 }
 
-header {
+/* ====== GLOBAL LAYOUT SYSTEM ====== */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* PAGE HEADER (UNIVERSAL) */
+.page-header {
+    border: 1px solid #e5e7eb;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    background: var(--white);
+    padding: 20px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+}
+
+.page-header p {
+    margin: 4px;
+    color: var(--text-grey);
+    font-size: 0.85rem;
+}
+
+.header-actions {
+    align-items: center;
+}
+
+.search-box input {
+    height: 42px;
+}
+
+
+/* BUTTON STANDARD (SYSTEM BASED) */
+.btn-primary-action {
+    border: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: var(--white);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.btn-primary-action:hover {
+    background: #2563eb; /* darker accent */
+    transform: translateY(-2px);
 }
 
 header h1 { font-size: 1.8rem; color: var(--text-dark); }
@@ -152,6 +207,7 @@ header p { color: var(--text-grey); font-size: 0.9rem; }
 
 /* TABEL */
 .recent-section {
+    margin-top: 20px;
     background: var(--white);
     padding: 25px;
     border-radius: 12px;

@@ -20,29 +20,11 @@ if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="assets/css/viewer.css">
 
     <style>
-        /* Styling Dashboard */
-        body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; }
-        a { text-decoration: none; }
-        
-        /* Header Styling */
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            flex-wrap: wrap; /* Agar responsif di HP */
-            gap: 15px;
-        }
-
         /* Group Tombol & Search */
         .header-actions {
             display: flex;
@@ -54,6 +36,7 @@ if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
         .search-box {
             position: relative;
         }
+
         .search-box input {
             padding-left: 35px;
             border-radius: 20px;
@@ -61,11 +44,14 @@ if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
             width: 250px;
             transition: 0.3s;
         }
+
         .search-box input:focus {
-            width: 300px; /* Efek melebar saat diketik */
+            width: 300px;
+            /* Efek melebar saat diketik */
             border-color: #1e3a8a;
             box-shadow: 0 0 5px rgba(30, 58, 138, 0.3);
         }
+
         .search-box i {
             position: absolute;
             left: 12px;
@@ -75,75 +61,140 @@ if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
         }
 
         /* Tombol Custom */
-        .btn-custom-add {
-            background: #2ecc71; color: white; border: none;
-            padding: 8px 15px; border-radius: 8px; font-weight: 500; transition: 0.3s;
-        }
-        .btn-custom-add:hover { background: #27ae60; color: white; }
-
-        .btn-custom-csv {
-            background: #198754; color: white; border: none;
-            padding: 8px 15px; border-radius: 8px; font-weight: 500; transition: 0.3s;
-        }
-        .btn-custom-csv:hover { background: #146c43; color: white; }
 
         /* Badge Status */
-        .badge-status { padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
-        .bg-aktif { background: #dcfce7; color: #16a34a; }
-        .bg-cuti { background: #fef9c3; color: #ca8a04; }
-        .bg-non_aktif { background: #fee2e2; color: #dc2626; }
-        .bg-meninggal { background: #f3f4f6; color: #4b5563; }
+        .badge-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .bg-aktif {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .bg-cuti {
+            background: #fef9c3;
+            color: #ca8a04;
+        }
+
+        .bg-non_aktif {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .bg-meninggal {
+            background: #f3f4f6;
+            color: #4b5563;
+        }
 
         /* Table Styling */
-        .recent-section { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background-color: #f8f9fa; font-weight: 600; color: #555; }
-        
+        .recent-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+        }
+
         /* Action Buttons */
-        .action-links a { margin-right: 10px; font-size: 1.1rem; transition: 0.2s; }
-        .btn-detail { color: #3b82f6; }
-        .btn-edit { color: #f59e0b; }
-        .btn-delete { color: #ef4444; }
-        .action-links a:hover { transform: scale(1.2); }
+        .action-links a {
+            margin-right: 10px;
+            font-size: 1.1rem;
+            transition: 0.2s;
+        }
+
+        .btn-detail {
+            color: #3b82f6;
+        }
+
+        .btn-edit {
+            color: #f59e0b;
+        }
+
+        .btn-delete {
+            color: #ef4444;
+        }
+
+        .action-links a:hover {
+            transform: scale(1.2);
+        }
     </style>
 </head>
 
 <body>
     <?php include __DIR__ . '/partials/sidebar.php'; ?>
 
-    <div class="main-content" style="margin-left: 250px; padding: 20px;">
-        
-        <?php if (isset($_GET['pesan']) && $_GET['pesan'] == 'import_selesai'): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Import Selesai!</strong> 
-                Sukses: <?php echo $_GET['sukses']; ?> data, 
-                Gagal: <?php echo $_GET['gagal']; ?> data.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif; ?>
+    <div class="main-content">
+        <div class="content-wrapper">
 
-        <div class="page-header">
-            <div>
-                <h1 style="margin:0; font-size: 1.5rem;">Data Advokat</h1>
-                <p style="margin:0; color:#888;">Kelola data anggota PERADI.</p>
-            </div>
-            
-            <div class="header-actions">
-                <div class="search-box">
-                    <i class="fa-solid fa-search"></i>
-                    <input type="text" id="searchInput" class="form-control" placeholder="Cari Nama, NIA, Kantor...">
+            <?php if (isset($_GET['pesan']) && $_GET['pesan'] == 'import_selesai'): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Import Selesai!</strong>
+                    Sukses: <?php echo $_GET['sukses']; ?> data,
+                    Gagal: <?php echo $_GET['gagal']; ?> data.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
+
+            <!-- PAGE HEADER (STANDAR GLOBAL ADMIN) -->
+            <div class="page-header">
+
+                <!-- KIRI: Judul -->
+                <div class="page-title">
+                    <h1>Data Advokat</h1>
+                    <p>Kelola data anggota PERADI.</p>
                 </div>
 
-                <a href="tambah_advokat.php" class="btn-custom-add" title="Tambah Manual">
-                    <i class="fa-solid fa-plus"></i> <span class="d-none d-md-inline">Baru</span>
-                </a>
-                
-                <button type="button" class="btn-custom-csv" data-bs-toggle="modal" data-bs-target="#modalImport" title="Import Excel/CSV">
-                    <i class="fa-solid fa-file-csv"></i> <span class="d-none d-md-inline">Import</span>
-                </button>
+                <!-- KANAN: Search + Action -->
+                <div class="header-actions">
+
+                    <!-- SEARCH -->
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input
+                            type="text"
+                            id="searchInput"
+                            class="form-control"
+                            placeholder="Cari Nama, NIA, Kantor...">
+                    </div>
+
+                    <!-- TOMBOL UTAMA -->
+                    <a href="tambah_advokat.php" class="btn-primary-action">
+                        <i class="fa-solid fa-plus"></i> Baru
+                    </a>
+
+                    <!-- TOMBOL SEKUNDER -->
+                    <button
+                        type="button"
+                        class="btn-secondary-action"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalImport">
+                        <i class="fa-solid fa-file-csv"></i> Import
+                    </button>
+
+                </div>
             </div>
-        </div>
 
         <div class="recent-section">
             <div class="table-responsive">
@@ -234,12 +285,12 @@ if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         document.getElementById('searchInput').addEventListener('keyup', function() {
             // 1. Ambil teks yang diketik user & ubah ke huruf kecil semua
             let filter = this.value.toLowerCase();
-            
+
             // 2. Ambil semua baris di dalam tabel (kecuali header)
             let rows = document.querySelectorAll('#dataTable tbody tr:not(#noResultRow)');
             let hasResult = false;
@@ -247,7 +298,7 @@ if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
             rows.forEach(row => {
                 // 3. Ambil seluruh teks di baris tersebut
                 let text = row.textContent.toLowerCase();
-                
+
                 // 4. Cek apakah teks baris mengandung kata kunci pencarian
                 if (text.includes(filter)) {
                     row.style.display = ''; // Tampilkan
@@ -261,6 +312,7 @@ if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
             document.getElementById('noResultRow').style.display = hasResult ? 'none' : '';
         });
     </script>
-
+    </div>
 </body>
+
 </html>

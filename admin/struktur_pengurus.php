@@ -33,21 +33,28 @@ $query = mysqli_query($conn, "SELECT * FROM struktur_pengurus ORDER BY id DESC")
 <?php include __DIR__ . '/partials/sidebar.php'; ?>
 
 <div class="main-content">
-    <div class="page-header">
-        <div>
-            <h1>Struktur Pengurus</h1>
-            <p>Kelola data pengurus organisasi.</p>
+    <!-- 🔴 TAMBAHKAN INI -->
+    <div class="content-wrapper">
+
+        <div class="page-header">
+            <div>
+                <h1>Struktur Pengurus</h1>
+                <p>Kelola data pengurus organisasi.</p>
+            </div>
+
+            <!-- 🔴 GANTI class btn-add -->
+            <a href="tambah_pengurus.php" class="btn-primary-action">
+                <i class="fa-solid fa-plus"></i> Tambah Pengurus
+            </a>
         </div>
 
-        <a href="tambah_pengurus.php" class="btn-add">
-            <i class="fa-solid fa-plus"></i> Tambah Pengurus
-        </a>
-    </div>
+        <div class="recent-section">
+            <!-- tabel -->
+        </div>
 
-    <div class="recent-section">
-        <!-- tabel struktur pengurus -->
     </div>
 </div>
+
 
 
     <div class="recent-section">
