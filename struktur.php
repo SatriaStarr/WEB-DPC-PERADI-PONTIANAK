@@ -54,7 +54,7 @@
 
     <header class="page-header">
         <div class="header-content">
-            <h1 class="header-title">Struktur Organisasi</h1>
+            <h1 class="header-title">Struktur Kepengurusan</h1>
             <p style="color: #dea057; letter-spacing: 2px; font-weight:600;">PERIODE 2025 - 2030</p>
         </div>
     </header>

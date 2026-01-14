@@ -1,10 +1,45 @@
+<?php
+// ✅ FIX: Cek apakah koneksi database sudah ada & tabel running_text exist
+$running_texts = [];
+
+if(isset($conn)) {
+    // Cek apakah tabel running_text ada
+    $check_table = mysqli_query($conn, "SHOW TABLES LIKE 'running_text'");
+    
+    if($check_table && mysqli_num_rows($check_table) > 0) {
+        // Tabel ada, ambil data
+        $query_running = mysqli_query($conn, "SELECT * FROM running_text WHERE is_active=1 ORDER BY urutan ASC");
+        if($query_running && mysqli_num_rows($query_running) > 0) {
+            while($row = mysqli_fetch_assoc($query_running)) {
+                $running_texts[] = [
+                    'icon' => $row['icon'],
+                    'pesan' => $row['pesan']
+                ];
+            }
+        }
+    }
+}
+
+// Jika tidak ada data dari database, pakai default
+if(empty($running_texts)) {
+    $running_texts = [
+        ['icon' => '📢', 'pesan' => 'Selamat Datang di Website Resmi DPC PERADI Pontianak. Pendaftaran PKPA Gelombang I Tahun 2026 Segera Dibuka!'],
+        ['icon' => '📢', 'pesan' => 'Pendaftaran PKPA Gelombang I Tahun 2026 Segera Dibuka! Cek syarat dan jadwal.'],
+        ['icon' => '📢', 'pesan' => 'Jangan lupa kunjungi Galeri kami untuk melihat kegiatan terbaru.'],
+        ['icon' => '💬', 'pesan' => 'Hubungi kami via kontak resmi untuk informasi lebih lanjut.']
+    ];
+}
+
+$running_texts_json = json_encode($running_texts);
+?>
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
     /* Reset kecil untuk header */
     * { box-sizing: border-box; }
-    
+
     /* RUNNING TEXT */
     .running-text-container {
         position: relative;
@@ -27,6 +62,8 @@
         white-space: nowrap;
         padding-left: 100%;
         animation: scrolling 25s linear infinite;
+        opacity: 1;
+        transition: opacity 0.5s ease;
     }
 
     @keyframes scrolling {
@@ -34,14 +71,18 @@
         100% { transform: translateX(-100%); }
     }
 
+    .hidden {
+        opacity: 0;
+    }
+
     /* NAVBAR */
     nav {
-        position: relative; /* Ikut Scroll */
+        position: relative;
         top: 0; left: 0; width: 100%;
         padding: 15px 50px;
         display: flex; justify-content: space-between; align-items: center;
         z-index: 1000;
-        background-color: #1e3a8a; /* Biru Solid */
+        background-color: #1e3a8a;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         border-bottom: 3px solid #dea057;
         font-family: 'Montserrat', sans-serif;
@@ -58,8 +99,7 @@
         text-decoration: none; color: white; font-size: 0.85rem; font-weight: 600;
         text-transform: uppercase; letter-spacing: 0.5px; transition: 0.3s ease; opacity: 0.9;
     }
-    
-    /* Logic Hover & Active */
+
     .nav-links a:hover, .nav-links a.active { color: #dea057; opacity: 1; }
 
     /* DROPDOWN */
@@ -77,7 +117,6 @@
     }
     .dropdown-content a:hover { background-color: #152c69; color: #dea057; padding-left: 25px; }
 
-    /* ANIMASI */
     @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
     /* RESPONSIVE */
@@ -91,9 +130,9 @@
 
 <?php if($page == 'index.php'): ?>
     <div class="running-text-container">
-        <div class="running-text">
-            📢 <strong>INFO PENTING:</strong> Selamat Datang di Website Resmi DPC PERADI Pontianak. Pendaftaran PKPA Gelombang I Tahun 2026 Segera Dibuka! | Fiat Justitia Ruat Caelum.
-        </div>
+        <span id="ticker-text" class="running-text">
+            <?php echo $running_texts[0]['icon']; ?> <strong>INFO PENTING:</strong> <?php echo htmlspecialchars($running_texts[0]['pesan']); ?>
+        </span>
     </div>
 <?php endif; ?>
 
@@ -140,3 +179,30 @@
         <li><a href="galeri.php" class="<?php if($page == 'galeri.php') echo 'active'; ?>">Galeri</a></li>
     </ul>
 </nav>
+
+<?php if($page == 'index.php'): ?>
+<script>
+    // Ambil data dari PHP (sudah di-encode JSON)
+    const messages = <?php echo $running_texts_json; ?>;
+
+    const tickerText = document.getElementById('ticker-text');
+    let idx = 0;
+
+    const intervalMs = 25000; // 25 detik
+    const fadeMs = 500; // 0.5 detik
+
+    function changeMessage() {
+        tickerText.classList.add('hidden');
+
+        setTimeout(() => {
+            idx = (idx + 1) % messages.length;
+            const msg = messages[idx];
+            tickerText.innerHTML = msg.icon + ' <strong>INFO PENTING:</strong> ' + msg.pesan;
+            tickerText.classList.remove('hidden');
+        }, fadeMs);
+    }
+
+    // Ganti pesan setiap 25 detik
+    setInterval(changeMessage, intervalMs);
+</script>
+<?php endif; ?>
