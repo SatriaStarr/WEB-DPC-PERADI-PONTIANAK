@@ -36,42 +36,6 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
         /* --- SIDEBAR STYLE (Meniru style sidebar.php yg kamu kirim) --- */
         /* Note: Nanti sidebar ini akan kita load pakai PHP include, 
            tapi CSS-nya perlu disiapkan agar sinkron */
-        .sidebar {
-            width: 250px;
-            background-color: #1e3a8a; /* Biru PERADI */
-            color: white;
-            position: fixed; top: 0; left: 0; height: 100%;
-            z-index: 100;
-            display: flex; flex-direction: column;
-            transition: 0.3s;
-        }
-
-        .logo-section {
-            padding: 20px;
-            display: flex; align-items: center; gap: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .logo-text h2 { font-size: 1.4rem; font-weight: 800; margin: 0; line-height: 1; }
-        .logo-text span { font-size: 0.75rem; letter-spacing: 1px; color: #dea057; }
-
-        .nav-links { list-style: none; padding: 15px 0; margin: 0; flex: 1; }
-        .nav-links li a {
-            display: flex; align-items: center; gap: 15px;
-            padding: 12px 25px;
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9rem; font-weight: 500;
-            transition: 0.3s;
-            border-left: 4px solid transparent;
-        }
-        .nav-links li a:hover, .nav-links li.active a {
-            background-color: #152c69;
-            color: white;
-            border-left-color: #dea057;
-        }
-
-        .logout-section { padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
-        .logout-section a { color: #ef4444; display: flex; align-items: center; gap: 10px; font-weight: 600; }
-        .logout-section a:hover { color: #ffadad; }
 
         /* --- MAIN CONTENT --- */
         .main-content {

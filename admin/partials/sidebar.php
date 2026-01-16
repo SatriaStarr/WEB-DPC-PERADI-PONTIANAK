@@ -4,55 +4,155 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
 
 <style>
     /* Hilangkan scrollbar default tapi tetap bisa scroll */
-    .sidebar::-webkit-scrollbar { width: 0px; background: transparent; }
-    
+    .sidebar::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
+
+    /* ===== RESET & FIX SIDEBAR (WAJIB) ===== */
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #1e3a8a;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+
+    .sidebar * {
+        box-sizing: border-box;
+    }
+
+    .sidebar ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    .sidebar li {
+        list-style: none;
+    }
+
+    .sidebar hr {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    .dropdown-item>a {
+        justify-content: space-between;
+    }
+
+    .dropdown-item>a span {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+
     /* Styling Link Menu */
     .nav-links li a {
-        display: flex; justify-content: space-between; align-items: center;
-        padding: 12px 25px; color: rgba(255,255,255,0.8);
-        text-decoration: none; font-size: 0.9rem; transition: 0.3s;
-        border-left: 4px solid transparent; cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 12px 25px;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: 0.3s;
+        border-left: 4px solid transparent;
+        cursor: pointer;
+        gap: 12px;
     }
-    .nav-links li a:hover, .nav-links li.active > a {
-        background-color: #152c69; color: white; border-left-color: #dea057;
+
+    .nav-links li a:hover,
+    .nav-links li.active>a {
+        background-color: #152c69;
+        color: white;
+        border-left-color: #dea057;
     }
 
     /* Icon panah dropdown */
-    .arrow { transition: transform 0.3s; font-size: 0.8rem; }
-    .rotate { transform: rotate(180deg); }
+    .arrow {
+        transition: transform 0.3s;
+        font-size: 0.8rem;
+    }
+
+    .rotate {
+        transform: rotate(180deg);
+    }
 
     /* Submenu (Level 1) */
     .submenu {
-        list-style: none; padding: 0; display: none; /* Default Hidden */
-        background-color: #15204a; /* Warna lebih gelap */
-        max-height: 400px; /* Tinggi maksimal */
-        overflow-y: auto; /* Scroll vertikal */
+        list-style: none;
+        padding: 0;
+        display: none;
+        /* Default Hidden */
+        background-color: #15204a;
+        /* Warna lebih gelap */
+        max-height: 400px;
+        /* Tinggi maksimal */
+        overflow-y: auto;
+        /* Scroll vertikal */
     }
+
     /* Scrollbar untuk submenu */
-    .submenu::-webkit-scrollbar { width: 5px; }
-    .submenu::-webkit-scrollbar-track { background: #0f1633; }
-    .submenu::-webkit-scrollbar-thumb { background: #dea057; border-radius: 10px; }
-    .submenu::-webkit-scrollbar-thumb:hover { background: #c88a3f; }
-    
-    .submenu li a {
-        padding-left: 45px; /* Indentasi ke dalam */
-        font-size: 0.85rem; border-left: none;
+    .submenu::-webkit-scrollbar {
+        width: 5px;
     }
-    .submenu li a:hover { background-color: #1e2d63; border-left: 4px solid #dea057; }
+
+    .submenu::-webkit-scrollbar-track {
+        background: #0f1633;
+    }
+
+    .submenu::-webkit-scrollbar-thumb {
+        background: #dea057;
+        border-radius: 10px;
+    }
+
+    .submenu::-webkit-scrollbar-thumb:hover {
+        background: #c88a3f;
+    }
+
+    .submenu li a {
+        padding-left: 45px;
+        /* Indentasi ke dalam */
+        font-size: 0.85rem;
+        border-left: none;
+    }
+
+    .submenu li a:hover {
+        background-color: #1e2d63;
+        border-left: 4px solid #dea057;
+    }
 
     /* Sub-Submenu (Level 2 - Peraturan & Layanan) */
     .sub-submenu {
-        list-style: none; padding: 0; display: none;
-        background-color: #0f1633; /* Warna paling gelap */
+        list-style: none;
+        padding: 0;
+        display: none;
+        background-color: #0f1633;
+        /* Warna paling gelap */
     }
+
     .sub-submenu li a {
-        padding-left: 65px; /* Indentasi lebih dalam lagi */
-        font-size: 0.8rem; opacity: 0.7;
+        padding-left: 65px;
+        /* Indentasi lebih dalam lagi */
+        font-size: 0.8rem;
+        opacity: 0.7;
     }
-    .sub-submenu li a:hover { opacity: 1; background-color: #15204a; }
+
+    .sub-submenu li a:hover {
+        opacity: 1;
+        background-color: #15204a;
+    }
 
     /* Class untuk menampilkan menu via JS */
-    .show-menu { display: block !important; }
+    .show-menu {
+        display: block !important;
+    }
 </style>
 
 <div class="sidebar">
@@ -64,14 +164,14 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
     </div>
 
     <ul class="nav-links">
-        
+
         <li>
             <a href="../index.php">
                 <span><i class="fa-solid fa-arrow-left" style="width:20px"></i> Layanan Home</span>
             </a>
         </li>
 
-        <li class="<?= basename($_SERVER['PHP_SELF'])=='dashboard.php'?'active':'' ?>">
+        <li class="<?= basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : '' ?>">
             <a href="dashboard.php">
                 <span><i class="fa-solid fa-chart-line" style="width:20px"></i> Dashboard</span>
             </a>
@@ -87,9 +187,9 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
                 <span><i class="fa-solid fa-layer-group" style="width:20px"></i> Kelola Halaman</span>
                 <i class="fa-solid fa-chevron-down arrow"></i>
             </a>
-            
+
             <ul id="menu-halaman" class="submenu">
-                
+
                 <li>
                     <a href="dashboard.php">
                         <span><i class="fa-solid fa-house" style="width:20px"></i> Home</span>
@@ -118,15 +218,23 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
                     </a>
                 </li>
 
+                <li class="<?= basename($_SERVER['PHP_SELF']) == 'kelola_layanan.php' ? 'active' : '' ?>">
+                    <a href="kelola_layanan.php">
+                        <span><i class="fa-solid fa-pen-to-square" style="width:20px"></i> Kelola Layanan</span>
+                    </a>
+                </li>
+
+
                 <li class="dropdown-item">
                     <a onclick="toggleMenu('menu-layanan', this)">
                         <span><i class="fa-solid fa-hand-holding-heart" style="width:20px"></i> Layanan</span>
                         <i class="fa-solid fa-chevron-down arrow"></i>
                     </a>
+
                     <ul id="menu-layanan" class="sub-submenu">
-                        <li><a href="layanan.php?jenis=pkpa">PKPA</a></li>
-                        <li><a href="layanan.php?jenis=upa">UPA</a></li>
-                        <li><a href="layanan.php?jenis=sumpah">Pengangkatan & Sumpah</a></li>
+                        <li><a href="layanan_pkpa.php">PKPA</a></li>
+                        <li><a href="layanan_upa.php">UPA</a></li>
+                        <li><a href="layanan_sumpah.php">Pengangkatan & Sumpah</a></li>
                     </ul>
                 </li>
 
@@ -139,23 +247,23 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
             </ul>
         </li>
 
-        <li class="<?= basename($_SERVER['PHP_SELF'])=='data_advokat.php'?'active':'' ?>">
+        <li class="<?= basename($_SERVER['PHP_SELF']) == 'data_advokat.php' ? 'active' : '' ?>">
             <a href="data_advokat.php">
-                <span><i class="fa-solid fa-users-viewfinder" style="width:20px"></i> Kelola DB Advokat</span>
+                <span><i class="fa-solid fa-users-viewfinder" style="width:20px"></i> Data Advokat</span>
             </a>
         </li>
 
         <!-- ✅ RUNNING TEXT (GANTI PENGUMUMAN) -->
-        <li class="<?= basename($_SERVER['PHP_SELF'])=='kelola_running_text.php'?'active':'' ?>">
+        <li class="<?= basename($_SERVER['PHP_SELF']) == 'kelola_running_text.php' ? 'active' : '' ?>">
             <a href="kelola_running_text.php">
                 <span><i class="fa-solid fa-scroll" style="width:20px"></i> Running Text</span>
             </a>
         </li>
-        
-        <li class="<?= basename($_SERVER['PHP_SELF'])=='verifikasi_admin.php' ? 'active' : '' ?>">
+
+        <li class="<?= basename($_SERVER['PHP_SELF']) == 'verifikasi_admin.php' ? 'active' : '' ?>">
             <a href="verifikasi_admin.php">
                 <span><i class="fa-solid fa-user-shield" style="width:20px"></i> Verifikasi Admin</span>
-                <?php if(isset($total_pending) && $total_pending > 0): ?>
+                <?php if (isset($total_pending) && $total_pending > 0): ?>
                     <span class="badge" style="background:#ef4444; padding:2px 6px; border-radius:4px; font-size:0.6rem; margin-left:5px;"><?php echo $total_pending; ?></span>
                 <?php endif; ?>
             </a>
@@ -174,13 +282,13 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
     function toggleMenu(id, element) {
         // 1. Ambil elemen menu yang mau dibuka
         var menu = document.getElementById(id);
-        
+
         // 2. Toggle class 'show-menu' (Buka/Tutup)
         menu.classList.toggle("show-menu");
-        
+
         // 3. Putar icon panah
         var arrow = element.querySelector(".arrow");
-        if(arrow) {
+        if (arrow) {
             arrow.classList.toggle("rotate");
         }
     }
