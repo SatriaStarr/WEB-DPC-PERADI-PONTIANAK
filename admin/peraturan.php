@@ -22,14 +22,15 @@ $query = mysqli_query($conn, "SELECT * FROM peraturan ORDER BY created_at DESC")
     <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- ICON -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <!-- CSS UTAMA -->
     <link rel="stylesheet" href="dashboard.css">
 
     <!-- ✅ CSS VIEWER (TAMBAHKAN DI SINI) -->
     <link rel="stylesheet" href="assets/css/viewer.css">
+
+    <!-- ICON -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* HEADER */
         .page-header {
@@ -180,18 +181,38 @@ $query = mysqli_query($conn, "SELECT * FROM peraturan ORDER BY created_at DESC")
                                 </td>
                                 <td><?= date('d M Y', strtotime($row['created_at'])); ?></td>
                                 <td class="action-links">
+
+                                    <!-- Lihat PDF -->
                                     <?php if (!empty($row['file_pdf'])) : ?>
                                         <a href="javascript:void(0)"
-                                            onclick="openViewer('../uploads/peraturan/<?= $row['file_pdf']; ?>','<?= htmlspecialchars($row['judul']); ?>')"
-                                            class="btn-detail">
+                                            onclick="openViewer(
+               '../uploads/peraturan/<?= $row['file_pdf']; ?>',
+               '<?= htmlspecialchars($row['judul'], ENT_QUOTES); ?>'
+           )"
+                                            class="btn-detail"
+                                            title="Lihat Peraturan">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
-
-                                        </a>
-                                    <?php else : ?>
-                                        -
                                     <?php endif; ?>
+
+                                    <!-- Edit -->
+                                    <a href="edit_peraturan.php?id=<?= $row['id']; ?>"
+                                        class="btn-edit"
+                                        title="Edit Peraturan">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+
+                                    <!-- Hapus -->
+                                    <a href="#"
+                                        class="btn-delete"
+                                        onclick="openDeleteModal(<?= $row['id']; ?>)"
+                                        title="Hapus Peraturan">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </a>
+
+
                                 </td>
+
 
                             </tr>
                     <?php
@@ -236,6 +257,27 @@ $query = mysqli_query($conn, "SELECT * FROM peraturan ORDER BY created_at DESC")
 
     <!-- JS VIEWER -->
     <script src="assets/js/viewer.js" defer></script>
+
+    <?php include 'partials/confirm_delete_modal.php'; ?>
+
+    <script>
+        function openDeleteModal(id) {
+            const modal = document.getElementById('confirmDeleteModal');
+            const yesBtn = document.getElementById('confirmDeleteYes');
+
+            if (!modal || !yesBtn) {
+                console.error('Modal delete tidak ditemukan di DOM');
+                return;
+            }
+
+            yesBtn.href = 'hapus_peraturan.php?id=' + id;
+            modal.style.display = 'flex';
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('confirmDeleteModal').style.display = 'none';
+        }
+    </script>
 
 </body>
 

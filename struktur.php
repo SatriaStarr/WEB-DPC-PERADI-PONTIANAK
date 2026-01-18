@@ -54,8 +54,8 @@
 
     <header class="page-header">
         <div class="header-content">
-            <h1 class="header-title">Struktur Organisasi</h1>
-            <p style="color: #dea057; letter-spacing: 2px; font-weight:600;">PERIODE 2025 - 2030</p>
+            <h1 class="header-title">Struktur Kepengurusan</h1>
+            <p style="color: #dea057; letter-spacing: 2px; font-weight:600;">PERIODE 2023 - 2027</p>
         </div>
     </header>
 
@@ -63,7 +63,7 @@
         
         <div class="ketua-section">
             <div class="ketua-card">
-                <img src="https://via.placeholder.com/150" alt="Ketua" class="foto-profil">
+                <img src="admin/image/FOTO 1 1.png" alt="Ketua" class="foto-profil">
                 <h3 class="nama">Nama Ketua DPC</h3>
                 <p class="jabatan">Ketua DPC</p>
             </div>
@@ -71,17 +71,17 @@
 
         <div class="pengurus-grid">
             <div class="pengurus-card">
-                <img src="https://via.placeholder.com/150" alt="Sekretaris" class="foto-profil">
+                <img src="admin/image/FOTO 2 2.png" alt="Sekretaris" class="foto-profil">
                 <h3 class="nama">Nama Sekretaris</h3>
                 <p class="jabatan">Sekretaris</p>
             </div>
             <div class="pengurus-card">
-                <img src="https://via.placeholder.com/150" alt="Bendahara" class="foto-profil">
+                <img src="admin/image/FOTO 2 2.png" alt="Bendahara" class="foto-profil">
                 <h3 class="nama">Nama Bendahara</h3>
                 <p class="jabatan">Bendahara</p>
             </div>
             <div class="pengurus-card">
-                <img src="https://via.placeholder.com/150" alt="Bidang" class="foto-profil">
+                <img src="admin/image/FOTO 2 2.png" alt="Bidang" class="foto-profil">
                 <h3 class="nama">Nama Kabid</h3>
                 <p class="jabatan">Ketua Bidang Pendidikan</p>
             </div>
