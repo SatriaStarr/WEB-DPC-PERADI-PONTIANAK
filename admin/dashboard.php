@@ -44,6 +44,7 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
         /* --- SIDEBAR STYLE (Meniru style sidebar.php yg kamu kirim) --- */
         /* Note: Nanti sidebar ini akan kita load pakai PHP include, 
            tapi CSS-nya perlu disiapkan agar sinkron */
+<<<<<<< HEAD
         .sidebar {
             width: 250px;
             background-color: #1e3a8a;
@@ -122,6 +123,8 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
         .logout-section a:hover {
             color: #ffadad;
         }
+=======
+>>>>>>> 373ca9667d0b89fee38458639b63051a2cafef92
 
         /* --- MAIN CONTENT --- */
         .main-content {

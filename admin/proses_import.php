@@ -3,27 +3,27 @@
 include 'koneksi.php';
 
 if (isset($_POST['import'])) {
-    
+
     $fileName = $_FILES['file_csv']['tmp_name'];
 
     if ($_FILES['file_csv']['size'] > 0) {
-        
+
         $file = fopen($fileName, "r");
 
         // Lewati Baris Header (Judul Kolom)
-        fgetcsv($file, 10000, ";"); 
+        fgetcsv($file, 10000, ";");
 
         $berhasil = 0;
         $gagal = 0;
 
         while (($column = fgetcsv($file, 10000, ";")) !== FALSE) {
-            
+
             // ===============================================================
             // MAPPING URUT SESUAI KOLOM EXCEL ANDA (Kiri ke Kanan)
             // ===============================================================
-            
+
             // Kolom A [0] : No. (Tidak dipakai karena Auto Number)
-            
+
             // Kolom B [1] : NIA
             $nia = isset($column[1]) ? mysqli_real_escape_string($conn, $column[1]) : '';
 
@@ -67,12 +67,23 @@ if (isset($_POST['import'])) {
             // Kolom O s/d Z [14-25] : (Dilewati - karena database belum ada kolomnya)
             // Jika nanti mau dipakai, tinggal tambahkan di sini urut.
 
-            
+
             // ===============================================================
             // DATA TAMBAHAN (DEFAULT)
             // ===============================================================
             $status = 'aktif';
             $foto   = 'default.jpg';
+
+            // ===============================================================
+            // CEK DUPLIKAT NIA (WAJIB)
+            // ===============================================================
+            $cek_nia = mysqli_query($conn, "SELECT nia FROM data_advokat WHERE nia='$nia'");
+
+            if (mysqli_num_rows($cek_nia) > 0) {
+                $gagal++;
+                continue; // Lewati data ini
+            }
+
 
 
             // ===============================================================
@@ -116,10 +127,9 @@ if (isset($_POST['import'])) {
                 $gagal++;
             }
         }
-        
+
         fclose($file);
         header("Location: data_advokat.php?pesan=import_selesai&sukses=$berhasil&gagal=$gagal");
         exit;
     }
 }
-?>
