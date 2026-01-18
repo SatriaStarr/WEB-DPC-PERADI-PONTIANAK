@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sumpah Advokat - DPC PERADI Pontianak</title>
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* --- CSS KHUSUS HALAMAN SUMPAH --- */
-        /* (CSS Navbar, Footer, & Reset Dasar sudah dihapus karena dipanggil dari header.php) */
-
+        /* --- CSS GLOBAL --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background-color: #f8f9fa; color: #333; }
 
-        /* HEADER PAGE (Gambar Upacara/Formal) */
+        /* HEADER PAGE */
         .page-header {
             position: relative; width: 100%; height: 50vh;
-            background-image: url('https://images.unsplash.com/photo-1555374018-13a8994ab246?q=80&w=1930&auto=format&fit=crop'); /* Gambar Toga/Hakim */
+            background-image: url('https://images.unsplash.com/photo-1555374018-13a8994ab246?q=80&w=1930&auto=format&fit=crop'); 
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; text-align: center;
-            
-            /* Margin 0 karena Navbar di header.php sudah Relative */
             margin-top: 0; 
         }
         .page-header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.6)); z-index: 1; }
@@ -29,37 +27,97 @@
 
         /* KONTEN UTAMA */
         .content-section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+        
+        /* Judul Section Rata Kiri */
         .section-title { font-size: 1.8rem; color: #1e3a8a; margin-bottom: 20px; border-left: 5px solid #dea057; padding-left: 15px; font-weight: 700; text-transform: uppercase; }
+        
+        /* Judul Section Rata Tengah */
+        .section-title-center { 
+            text-align: center; 
+            font-size: 1.8rem; 
+            color: #1e3a8a; 
+            margin-bottom: 40px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            position: relative;
+        }
+        .section-title-center::after {
+            content: ''; display: block; width: 60px; height: 4px; background: #dea057; 
+            margin: 15px auto 0; border-radius: 2px;
+        }
+
         .text-content { font-size: 1rem; line-height: 1.8; color: #555; text-align: justify; margin-bottom: 40px; }
 
-        /* VISUALISASI ALUR (TIMELINE) */
+        /* --- PENGUMUMAN BOX (Biru Gradasi) --- */
+        .pengumuman-box {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0d2566 100%);
+            color: white;
+            padding: 35px 40px;
+            border-radius: 12px;
+            margin-top: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.25);
+            flex-wrap: wrap;
+            gap: 20px;
+            border-left: 5px solid #dea057;
+        }
+
+        .pengumuman-text h3 {
+            font-size: 1.6rem;
+            color: #dea057;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .pengumuman-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+            max-width: 700px;
+        }
+
+        .btn-pengumuman {
+            background: #dea057;
+            color: #1e3a8a;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(222, 160, 87, 0.3);
+        }
+        .btn-pengumuman:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        /* VISUALISASI ALUR */
         .alur-box { display: flex; justify-content: space-between; gap: 20px; margin-bottom: 60px; flex-wrap: wrap; }
-        .alur-step { flex: 1; background: white; padding: 30px 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-radius: 8px; border-bottom: 4px solid #ddd; transition: 0.3s; }
+        .alur-step { flex: 1; background: white; padding: 30px 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-radius: 8px; border-bottom: 4px solid #ddd; transition: 0.3s; min-width: 200px; }
         .alur-step:hover { transform: translateY(-5px); border-bottom-color: #dea057; }
         .step-number { font-size: 2.5rem; font-weight: 800; color: #f0f0f0; margin-bottom: 10px; }
         .step-icon { color: #dea057; font-size: 2rem; margin-bottom: 15px; }
         .alur-step h4 { margin-bottom: 10px; font-size: 1.1rem; color: #333; }
         .alur-step p { font-size: 0.85rem; color: #666; }
 
-        /* SYARAT LIST (Dua Kolom) */
-        .syarat-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        /* SYARAT LIST */
+        .syarat-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 60px; }
         .syarat-col h3 { font-size: 1.3rem; margin-bottom: 20px; color: #1e3a8a; border-bottom: 2px solid #dea057; padding-bottom: 10px; display: inline-block; font-weight: 700; }
         .check-list { list-style: none; }
         .check-list li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; color: #555; font-size: 0.95rem; }
         .check-list i { color: #dea057; font-size: 1.1rem; margin-top: 3px; }
 
-        /* DOWNLOAD AREA */
-        .download-area { background: #1e3a8a; color: white; padding: 50px; border-radius: 10px; margin-top: 60px; text-align: center; background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png'); }
-        .download-area h2 { color: #dea057; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; }
-        .download-area p { margin-bottom: 30px; color: #ccc; max-width: 700px; margin-left: auto; margin-right: auto; }
-        
-        .btn-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .btn-download { background: transparent; border: 2px solid #dea057; color: #dea057; padding: 12px 25px; text-decoration: none; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 10px; border-radius: 4px; }
-        .btn-download:hover { background: #dea057; color: #1e3a8a; }
-        .btn-download i { font-size: 1.2rem; }
-
         @media (max-width: 768px) {
             .alur-box { flex-direction: column; }
+            .pengumuman-box { text-align: center; justify-content: center; }
         }
     </style>
 </head>
@@ -81,6 +139,8 @@
             Berdasarkan UU No. 18 Tahun 2003 tentang Advokat, seseorang yang telah memenuhi persyaratan dapat diangkat sebagai Advokat oleh Organisasi Advokat dan selanjutnya wajib bersumpah di hadapan Sidang Terbuka Pengadilan Tinggi di wilayah domisili hukumnya sebelum menjalankan profesi.
         </p>
 
+        <h2 class="section-title-center">Alur Menjadi Advokat</h2>
+        
         <div class="alur-box">
             <div class="alur-step">
                 <div class="step-number">01</div>
@@ -133,24 +193,20 @@
             </div>
         </div>
 
-        <div class="download-area">
-            <h2><i class="fa-solid fa-cloud-arrow-down"></i> Pusat Unduhan</h2>
-            <p>Silakan unduh formulir kelengkapan berkas di bawah ini. Pastikan mengisi data dengan benar menggunakan tinta hitam dan huruf kapital.</p>
-            
-            <div class="btn-group">
-                <a href="#" class="btn-download">
-                    <i class="fa-regular fa-file-pdf"></i> Formulir Pengangkatan
-                </a>
-                <a href="#" class="btn-download">
-                    <i class="fa-regular fa-file-word"></i> Draft Surat Pernyataan
-                </a>
-                <a href="#" class="btn-download">
-                    <i class="fa-solid fa-book"></i> Buku Panduan Magang
-                </a>
+        <div class="pengumuman-box">
+            <div class="pengumuman-text">
+                <h3><i class="fa-solid fa-gavel"></i> Pengumuman Sumpah Advokat</h3>
+                <p>
+                    Informasi jadwal, lokasi, dan daftar nama calon advokat yang telah terverifikasi untuk mengikuti 
+                    Sidang Terbuka Pengambilan Sumpah di Pengadilan Tinggi Pontianak periode ini.
+                </p>
             </div>
+            
+            <a href="assets/pengumuman_sumpah_2026.pdf" target="_blank" class="btn-pengumuman">
+                <i class="fa-solid fa-file-arrow-down"></i> Unduh Pengumuman
+            </a>
         </div>
-
-    </div>
+        </div>
 
     <?php include 'footer.php'; ?>
 
