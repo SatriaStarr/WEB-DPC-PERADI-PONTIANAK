@@ -160,7 +160,7 @@
     </ul>
 
     <div class="logout-section">
-        <a href="logout.php" onclick="return confirm('Yakin ingin keluar?')">
+        <a href="auth/logout.php" onclick="return confirm('Yakin ingin keluar?')">
             <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
         </a>
     </div>

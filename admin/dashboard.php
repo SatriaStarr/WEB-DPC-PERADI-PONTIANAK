@@ -19,63 +19,114 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin - PERADI</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         /* --- GLOBAL STYLE --- */
-        body { font-family: 'Poppins', sans-serif; background-color: #f4f6f9; color: #333; }
-        a { text-decoration: none; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+        }
 
         /* --- SIDEBAR STYLE (Meniru style sidebar.php yg kamu kirim) --- */
         /* Note: Nanti sidebar ini akan kita load pakai PHP include, 
            tapi CSS-nya perlu disiapkan agar sinkron */
         .sidebar {
             width: 250px;
-            background-color: #1e3a8a; /* Biru PERADI */
+            background-color: #1e3a8a;
+            /* Biru PERADI */
             color: white;
-            position: fixed; top: 0; left: 0; height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
             z-index: 100;
-            display: flex; flex-direction: column;
+            display: flex;
+            flex-direction: column;
             transition: 0.3s;
         }
 
         .logo-section {
             padding: 20px;
-            display: flex; align-items: center; gap: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .logo-text h2 { font-size: 1.4rem; font-weight: 800; margin: 0; line-height: 1; }
-        .logo-text span { font-size: 0.75rem; letter-spacing: 1px; color: #dea057; }
 
-        .nav-links { list-style: none; padding: 15px 0; margin: 0; flex: 1; }
+        .logo-text h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: #dea057;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 15px 0;
+            margin: 0;
+            flex: 1;
+        }
+
         .nav-links li a {
-            display: flex; align-items: center; gap: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
             padding: 12px 25px;
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9rem; font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            font-weight: 500;
             transition: 0.3s;
             border-left: 4px solid transparent;
         }
-        .nav-links li a:hover, .nav-links li.active a {
+
+        .nav-links li a:hover,
+        .nav-links li.active a {
             background-color: #152c69;
             color: white;
             border-left-color: #dea057;
         }
 
-        .logout-section { padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
-        .logout-section a { color: #ef4444; display: flex; align-items: center; gap: 10px; font-weight: 600; }
-        .logout-section a:hover { color: #ffadad; }
+        .logout-section {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logout-section a {
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .logout-section a:hover {
+            color: #ffadad;
+        }
 
         /* --- MAIN CONTENT --- */
         .main-content {
-            margin-left: 250px; /* Memberi ruang untuk sidebar */
+            margin-left: 250px;
+            /* Memberi ruang untuk sidebar */
             padding: 30px;
             transition: 0.3s;
         }
@@ -85,70 +136,149 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
             background: white;
             padding: 25px 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             margin-bottom: 30px;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .header-title h1 { font-size: 1.5rem; font-weight: 700; color: #1e3a8a; margin: 0; }
-        .header-title p { color: #888; margin: 5px 0 0 0; font-size: 0.9rem; }
-        .user-profile { display: flex; align-items: center; gap: 10px; }
-        .user-avatar { width: 40px; height: 40px; background: #e0e7ff; color: #1e3a8a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin: 0;
+        }
+
+        .header-title p {
+            color: #888;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #e0e7ff;
+            color: #1e3a8a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
 
         /* --- STAT CARDS --- */
         .cards-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
         }
+
         .stat-card {
             background: white;
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-left: 5px solid #1e3a8a;
             transition: transform 0.3s;
         }
-        .stat-card:hover { transform: translateY(-5px); }
-        
-        .stat-info h3 { font-size: 2.5rem; font-weight: 700; margin: 0; color: #333; }
-        .stat-info p { margin: 5px 0 0 0; color: #666; font-size: 0.95rem; font-weight: 500; }
-        
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-info h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            color: #333;
+        }
+
+        .stat-info p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
         .stat-icon {
-            width: 60px; height: 60px;
-            background: #f0f4ff; color: #1e3a8a;
+            width: 60px;
+            height: 60px;
+            background: #f0f4ff;
+            color: #1e3a8a;
             border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.5rem;
         }
 
         /* Warna Khusus Card */
-        .stat-card.orange { border-left-color: #f59e0b; }
-        .stat-card.orange .stat-icon { background: #fffbeb; color: #f59e0b; }
-        
-        .stat-card.green { border-left-color: #10b981; }
-        .stat-card.green .stat-icon { background: #ecfdf5; color: #10b981; }
+        .stat-card.orange {
+            border-left-color: #f59e0b;
+        }
+
+        .stat-card.orange .stat-icon {
+            background: #fffbeb;
+            color: #f59e0b;
+        }
+
+        .stat-card.green {
+            border-left-color: #10b981;
+        }
+
+        .stat-card.green .stat-icon {
+            background: #ecfdf5;
+            color: #10b981;
+        }
 
         /* --- CONTENT SECTION (GRAFIK/RECENT) --- */
         .content-section {
             background: white;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             min-height: 300px;
         }
-        .section-title { font-size: 1.1rem; font-weight: 700; color: #333; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
 
         /* Responsif HP */
         @media (max-width: 768px) {
-            .sidebar { transform: translateX(-100%); }
-            .main-content { margin-left: 0; }
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <?php include 'partials/sidebar.php'; ?> 
+    <?php include 'partials/sidebar.php'; ?>
     <div class="main-content">
-        
+
         <div class="page-header">
             <div class="header-title">
                 <h1>Dashboard Overview</h1>
@@ -162,6 +292,16 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
                 <div class="user-avatar">A</div>
             </div>
         </div>
+        <?php if (isset($_GET['pesan']) && $_GET['pesan'] == "no_access"): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                style="background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <strong>AKSES DITOLAK!</strong> Hanya Admin Utama yang bisa menerima dan menolak!
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="float:right; background:none; border:none;">X</button>
+            </div>
+        <?php endif; ?>
 
         <div class="cards-grid">
             <div class="stat-card">
@@ -197,7 +337,7 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
 
         <div class="content-section">
             <h4 class="section-title">Aktivitas Terbaru</h4>
-            
+
             <div style="text-align:center; padding: 50px; color:#ccc; border: 2px dashed #eee; border-radius:8px;">
                 <i class="fa-solid fa-chart-area fa-3x mb-3"></i>
                 <p>Belum ada aktivitas terbaru hari ini.</p>
@@ -209,4 +349,5 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

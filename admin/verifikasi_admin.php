@@ -15,6 +15,7 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,11 +23,20 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <style>
         /* --- GLOBAL STYLE --- */
-        body { font-family: 'Poppins', sans-serif; background-color: #f4f6f9; color: #333; margin: 0; padding: 0; }
-        a { text-decoration: none; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
 
         /* ===== SIDEBAR STYLE (DITAMBAHKAN KEMBALI) ===== */
         .sidebar {
@@ -48,14 +58,16 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
             display: flex;
             align-items: center;
             gap: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .logo-text h2 {
             font-size: 1.4rem;
             font-weight: 800;
             margin: 0;
             line-height: 1;
         }
+
         .logo-text span {
             font-size: 0.75rem;
             letter-spacing: 1px;
@@ -68,17 +80,19 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
             margin: 0;
             flex: 1;
         }
+
         .nav-links li a {
             display: flex;
             align-items: center;
             gap: 15px;
             padding: 12px 25px;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
             font-weight: 500;
             transition: 0.3s;
             border-left: 4px solid transparent;
         }
+
         .nav-links li a:hover,
         .nav-links li.active a {
             background-color: #152c69;
@@ -88,8 +102,9 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
 
         .logout-section {
             padding: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .logout-section a {
             color: #ef4444;
             display: flex;
@@ -97,6 +112,7 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
             gap: 10px;
             font-weight: 600;
         }
+
         .logout-section a:hover {
             color: #ffadad;
         }
@@ -123,18 +139,20 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
             background: white;
             padding: 20px 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             margin-bottom: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .header-title h1 {
             font-size: 1.5rem;
             font-weight: 700;
             color: #1e3a8a;
             margin: 0;
         }
+
         .header-title p {
             color: #888;
             margin: 5px 0 0 0;
@@ -145,8 +163,9 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
             background: white;
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
+
         .table thead th {
             background-color: #f8f9fa;
             color: #64748b;
@@ -156,20 +175,24 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
             padding: 15px;
             text-transform: uppercase;
         }
+
         .table tbody td {
             padding: 15px;
             vertical-align: middle;
         }
+
         .badge-status {
             padding: 6px 12px;
             border-radius: 50px;
             font-size: 0.75rem;
             font-weight: 600;
         }
+
         .bg-pending {
             background: #fff7ed;
             color: #c2410c;
         }
+
         .btn-action {
             padding: 6px 12px;
             border-radius: 6px;
@@ -182,15 +205,19 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
             align-items: center;
             transition: 0.3s;
         }
+
         .btn-terima {
             background: #10b981;
         }
+
         .btn-terima:hover {
             background: #059669;
         }
+
         .btn-tolak {
             background: #ef4444;
         }
+
         .btn-tolak:hover {
             background: #dc2626;
         }
@@ -199,12 +226,14 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
             .sidebar {
                 transform: translateX(-100%);
             }
+
             .main-content {
                 margin-left: 0;
             }
         }
     </style>
 </head>
+
 <body>
 
     <?php include __DIR__ . '/partials/sidebar.php'; ?>
@@ -236,37 +265,34 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
                         $query = mysqli_query($conn, "SELECT * FROM users WHERE status='pending' ORDER BY created_at DESC");
 
                         if (mysqli_num_rows($query) > 0) {
-                            while($row = mysqli_fetch_assoc($query)) {
-                                
-                                // === ANTI ERROR: Cek nama kolom ID ===
-                                // Kadang nama kolomnya 'id', kadang 'id_user'. Kita cek dua-duanya.
+                            while ($row = mysqli_fetch_assoc($query)) {
+                                // Cek apakah kolomnya id atau id_user
                                 $id_user = isset($row['id']) ? $row['id'] : (isset($row['id_user']) ? $row['id_user'] : 0);
-                                // =====================================
                         ?>
-                        <tr>
-                            <td><?php echo $no++; ?></td>
-                            <td><strong><?php echo htmlspecialchars($row['nama_lengkap']); ?></strong></td>
-                            <td>@<?php echo htmlspecialchars($row['username']); ?></td>
-                            <td><?php echo date('d M Y', strtotime($row['created_at'])); ?></td>
-                            <td><span class="badge-status bg-pending">Menunggu</span></td>
-                            <td>
-                                <a href="proses_verifikasi.php?id=<?php echo $id_user; ?>&aksi=terima" 
-                                   class="btn-action btn-terima"
-                                   onclick="return confirm('Yakin ingin menerima?')">
-                                    <i class="fa-solid fa-check"></i> Terima
-                                </a>
+                                <tr>
+                                    <td><?php echo $no++; ?></td>
+                                    <td><strong><?php echo htmlspecialchars($row['nama_lengkap']); ?></strong></td>
+                                    <td>@<?php echo htmlspecialchars($row['username']); ?></td>
+                                    <td><?php echo date('d M Y', strtotime($row['created_at'])); ?></td>
+                                    <td><span class="badge-status bg-pending">Menunggu</span></td>
+                                    <td>
+                                        <a href="auth/proses_verifikasi.php?id=<?php echo $id_user; ?>&aksi=terima"
+                                            class="btn-action btn-terima"
+                                            onclick="return confirm('Yakin ingin menerima?')">
+                                            <i class="fa-solid fa-check"></i> Terima
+                                        </a>
 
-                                <a href="proses_verifikasi.php?id=<?php echo $id_user; ?>&aksi=tolak" 
-                                   class="btn-action btn-tolak"
-                                   onclick="return confirm('Yakin ingin menolak?')">
-                                    <i class="fa-solid fa-xmark"></i> Tolak
-                                </a>
-                            </td>
-                        </tr>
-                        <?php 
+                                        <a href="auth/proses_verifikasi.php?id=<?php echo $id_user; ?>&aksi=tolak"
+                                            class="btn-action btn-tolak"
+                                            onclick="return confirm('Yakin ingin menolak?')">
+                                            <i class="fa-solid fa-xmark"></i> Tolak
+                                        </a>
+                                    </td>
+                                </tr>
+                        <?php
                             }
                         } else {
-                            echo '<tr><td colspan="6" class="text-center text-muted py-5"><i class="fa-solid fa-inbox fa-2x mb-2"></i><br>Tidak ada data pending.</td></tr>';
+                            echo '<tr><td colspan="6" class="text-center text-muted py-5">Tidak ada data pending.</td></tr>';
                         }
                         ?>
                     </tbody>
@@ -277,4 +303,5 @@ $total_pending = ($q_pending) ? mysqli_fetch_assoc($q_pending)['total'] : 0;
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
