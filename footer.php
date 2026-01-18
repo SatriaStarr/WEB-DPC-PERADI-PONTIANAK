@@ -70,12 +70,12 @@
         <h3 class="footer-title">DPC PERADI PONTIANAK</h3>
     </div>
 
-    <p class="footer-text">Jl. Jenderal Ahmad Yani No. 123, Pontianak, Kalimantan Barat</p>
-    <p class="footer-text">Email: sekretariat@peradipontianak.or.id | Telp: (0561) 123456</p>
+    <p class="footer-text">Jl. Sultan Abdurrahman No. 12 D Akcaya, Pontianak, Kalimantan Barat</p>
+    <p class="footer-text">Email: dpcperadipontianak@gmail.com | Telp: 0812-8570-1976</p>
 
     <div class="copyright">
         &copy; <?php echo date("Y"); ?> DPC PERADI Pontianak. All Rights Reserved. <br>
-        Developed by <strong>Tim IT Magang</strong>
+        Developed by <strong>Polnep Interns</strong>
     </div>
 
     <?php if(basename($_SERVER['PHP_SELF']) == 'index.php'): ?>
