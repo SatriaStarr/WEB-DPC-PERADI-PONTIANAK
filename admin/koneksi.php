@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = ""; // Kosongkan jika pakai XAMPP default
-$db   = "db_peradi"; // Nama database yang baru kita buat
+$pass = ""; 
+$db   = "db_peradi"; 
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
