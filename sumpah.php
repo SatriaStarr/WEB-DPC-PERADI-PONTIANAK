@@ -54,7 +54,8 @@
             color: white;
             padding: 35px 40px;
             border-radius: 12px;
-            margin-top: 60px;
+            /* Margin disesuaikan agar rapi di posisi baru */
+            margin-bottom: 80px; 
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -139,6 +140,19 @@
             Berdasarkan UU No. 18 Tahun 2003 tentang Advokat, seseorang yang telah memenuhi persyaratan dapat diangkat sebagai Advokat oleh Organisasi Advokat dan selanjutnya wajib bersumpah di hadapan Sidang Terbuka Pengadilan Tinggi di wilayah domisili hukumnya sebelum menjalankan profesi.
         </p>
 
+        <div class="pengumuman-box">
+            <div class="pengumuman-text">
+                <h3><i class="fa-solid fa-gavel"></i> Pengumuman Sumpah Advokat</h3>
+                <p>
+                    Informasi jadwal, lokasi, dan daftar nama calon advokat yang telah terverifikasi untuk mengikuti 
+                    Sidang Terbuka Pengambilan Sumpah di Pengadilan Tinggi Pontianak periode ini.
+                </p>
+            </div>
+            
+            <a href="assets/pengumuman_sumpah_2026.pdf" target="_blank" class="btn-pengumuman">
+                <i class="fa-solid fa-file-arrow-down"></i> Unduh Pengumuman
+            </a>
+        </div>
         <h2 class="section-title-center">Alur Menjadi Advokat</h2>
         
         <div class="alur-box">
@@ -193,20 +207,7 @@
             </div>
         </div>
 
-        <div class="pengumuman-box">
-            <div class="pengumuman-text">
-                <h3><i class="fa-solid fa-gavel"></i> Pengumuman Sumpah Advokat</h3>
-                <p>
-                    Informasi jadwal, lokasi, dan daftar nama calon advokat yang telah terverifikasi untuk mengikuti 
-                    Sidang Terbuka Pengambilan Sumpah di Pengadilan Tinggi Pontianak periode ini.
-                </p>
-            </div>
-            
-            <a href="assets/pengumuman_sumpah_2026.pdf" target="_blank" class="btn-pengumuman">
-                <i class="fa-solid fa-file-arrow-down"></i> Unduh Pengumuman
-            </a>
-        </div>
-        </div>
+    </div>
 
     <?php include 'footer.php'; ?>
 

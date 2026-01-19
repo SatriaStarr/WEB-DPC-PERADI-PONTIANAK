@@ -38,14 +38,13 @@
         
         .text-content { font-size: 1.05rem; line-height: 1.8; color: #555; text-align: center; max-width: 800px; margin: 0 auto 50px; }
 
-        /* --- PENGUMUMAN LULUS (POSISI DI BAWAH) --- */
+        /* --- PENGUMUMAN LULUS (MODIFIKASI) --- */
         .pengumuman-box {
             background: linear-gradient(135deg, #1e3a8a 0%, #0d2566 100%);
             color: white;
             padding: 30px 40px;
             border-radius: 15px;
-            margin-top: 60px; /* Jarak dari elemen atasnya */
-            margin-bottom: 40px;
+            margin-bottom: 80px; /* Jarak ke elemen bawahnya */
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -185,7 +184,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 20px;
-            /* margin-bottom dihapus biar tidak terlalu jauh dari pengumuman */
+            margin-bottom: 60px; 
         }
 
         .banner-text h3 { font-size: 1.5rem; font-weight: 700; color: #dea057; margin-bottom: 10px; }
@@ -240,6 +239,19 @@
             Lulus UPA adalah syarat mutlak untuk dapat dilantik dan disumpah menjadi Advokat. Standar kelulusan yang tinggi diterapkan demi menjaga kualitas Advokat Indonesia.
         </p>
 
+        <div class="pengumuman-box">
+            <div class="pengumuman-content">
+                <h3><i class="fa-solid fa-bullhorn"></i> Pengumuman Kelulusan</h3>
+                <p>
+                    Hasil Ujian Profesi Advokat (UPA) Gelombang I Tahun 2025 telah resmi dirilis. 
+                    Silakan cek nama Anda pada daftar kelulusan melalui tombol di samping.
+                </p>
+            </div>
+            
+            <a href="assets/pengumuman_lulus_upa.pdf" target="_blank" class="btn-cek-lulus">
+                <i class="fa-solid fa-list-check"></i> Cek Daftar Kelulusan
+            </a>
+        </div>
         <h2 class="section-title">Materi Ujian</h2>
         <div class="materi-grid">
             <div class="materi-card">
@@ -327,7 +339,7 @@
                     <div class="syarat-list-item">
                         <div class="syarat-num" style="background: #eee; color: #555;">e</div>
                         <div class="syarat-text">
-                            Fotokopi <strong>Sertifikat PKPA</strong> yang dikeluarkan oleh PERADI dan ditandatangani oleh Ketua Umum.
+                            Fotokopi <strong>Sertifikat PKPA</strong> yang dikeluarkan oleh PERADI.
                         </div>
                     </div>
                 </div>
@@ -344,21 +356,8 @@
                 <i class="fa-solid fa-file-arrow-down"></i> Unduh Formulir
             </a>
         </div>
-
-        <div class="pengumuman-box">
-            <div class="pengumuman-content">
-                <h3><i class="fa-solid fa-bullhorn"></i> Pengumuman Kelulusan</h3>
-                <p>
-                    Hasil Ujian Profesi Advokat (UPA) Gelombang I Tahun 2025 telah resmi dirilis. 
-                    Silakan cek nama Anda pada daftar kelulusan melalui tombol di samping.
-                </p>
-            </div>
-            
-            <a href="assets/pengumuman_lulus_upa.pdf" target="_blank" class="btn-cek-lulus">
-                <i class="fa-solid fa-list-check"></i> Cek Daftar Kelulusan
-            </a>
-        </div>
-        </div>
+        
+    </div>
 
     <?php include 'footer.php'; ?>
 
