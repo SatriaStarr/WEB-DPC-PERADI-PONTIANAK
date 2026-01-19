@@ -1,5 +1,35 @@
 <?php
 $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
+
+// Deteksi halaman aktif
+$current_page = basename($_SERVER['PHP_SELF']);
+
+// Function untuk cek active menu
+function isActive($page) {
+    global $current_page;
+    return ($current_page == $page) ? 'active' : '';
+}
+
+// Function untuk cek apakah kategori peraturan aktif
+function isPeraturanActive() {
+    global $current_page;
+    return ($current_page == 'peraturan.php') ? true : false;
+}
+
+// Function untuk cek apakah submenu layanan aktif
+function isLayananActive() {
+    global $current_page;
+    $layanan_pages = ['layanan_pkpa.php', 'layanan_upa.php', 'layanan_sumpah.php'];
+    return in_array($current_page, $layanan_pages);
+}
+
+// Function untuk cek apakah ada menu aktif di Kelola Halaman
+function isKelolaHalamanActive() {
+    global $current_page;
+    $kelola_pages = ['struktur_pengurus.php', 'peraturan.php', 'galeri.php', 'kelola_layanan.php', 
+                     'layanan_pkpa.php', 'layanan_upa.php', 'layanan_sumpah.php'];
+    return in_array($current_page, $kelola_pages);
+}
 ?>
 
 <style>
@@ -216,7 +246,8 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
         border-left: none;
     }
 
-    .submenu li a:hover {
+    .submenu li a:hover,
+    .submenu li.active > a {
         background-color: #1e2d63;
         border-left: 4px solid #dea057;
     }
@@ -235,7 +266,8 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
         opacity: 0.85;
     }
 
-    .sub-submenu li a:hover {
+    .sub-submenu li a:hover,
+    .sub-submenu li.active a {
         opacity: 1;
         background-color: #15204a;
         border-left: 4px solid #dea057;
@@ -355,7 +387,7 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
         </li>
 
         <!-- DASHBOARD -->
-        <li class="<?= basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : '' ?>">
+        <li class="<?php echo isActive('dashboard.php'); ?>">
             <a href="dashboard.php">
                 <span>
                     <i class="fa-solid fa-chart-line"></i>
@@ -377,13 +409,13 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
                     <i class="fa-solid fa-layer-group"></i>
                     Kelola Halaman
                 </span>
-                <i class="fa-solid fa-chevron-down arrow"></i>
+                <i class="fa-solid fa-chevron-down arrow <?php echo isKelolaHalamanActive() ? 'rotate' : ''; ?>"></i>
             </a>
 
-            <ul id="menu-halaman" class="submenu">
+            <ul id="menu-halaman" class="submenu <?php echo isKelolaHalamanActive() ? 'show-menu' : ''; ?>">
 
                 <!-- HOME -->
-                <li>
+                <li class="<?php echo isActive('dashboard.php'); ?>">
                     <a href="dashboard.php">
                         <span>
                             <i class="fa-solid fa-house"></i>
@@ -393,27 +425,41 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
                 </li>
 
                 <!-- PERATURAN (SUB-DROPDOWN) -->
-                <li class="dropdown-item">
+                <li class="dropdown-item <?php echo isPeraturanActive() ? 'active' : ''; ?>">
                     <a onclick="toggleMenu('menu-peraturan', this)">
                         <span>
                             <i class="fa-solid fa-book-open"></i>
                             Peraturan
                         </span>
-                        <i class="fa-solid fa-chevron-down arrow"></i>
+                        <i class="fa-solid fa-chevron-down arrow <?php echo isPeraturanActive() ? 'rotate' : ''; ?>"></i>
                     </a>
-                    <ul id="menu-peraturan" class="sub-submenu">
-                        <li><a href="peraturan.php?kategori=uu18">UU No. 18 Tahun 2003</a></li>
-                        <li><a href="peraturan.php?kategori=kodeetik">Kode Etik Advokat</a></li>
-                        <li><a href="peraturan.php?kategori=ad">Anggaran Dasar</a></li>
-                        <li><a href="peraturan.php?kategori=prt">Peraturan Rumah Tangga</a></li>
-                        <li><a href="peraturan.php?kategori=magang">Peraturan Magang</a></li>
-                        <li><a href="peraturan.php?kategori=keanggotaan">Peraturan Keanggotaan</a></li>
-                        <li><a href="peraturan.php?kategori=perpindahan">Peraturan Perpindahan</a></li>
+                    <ul id="menu-peraturan" class="sub-submenu <?php echo isPeraturanActive() ? 'show-menu' : ''; ?>">
+                        <li class="<?php echo (isset($_GET['kategori']) && $_GET['kategori'] == 'uu18') ? 'active' : ''; ?>">
+                            <a href="peraturan.php?kategori=uu18">UU No. 18 Tahun 2003</a>
+                        </li>
+                        <li class="<?php echo (isset($_GET['kategori']) && $_GET['kategori'] == 'kodeetik') ? 'active' : ''; ?>">
+                            <a href="peraturan.php?kategori=kodeetik">Kode Etik Advokat</a>
+                        </li>
+                        <li class="<?php echo (isset($_GET['kategori']) && $_GET['kategori'] == 'ad') ? 'active' : ''; ?>">
+                            <a href="peraturan.php?kategori=ad">Anggaran Dasar</a>
+                        </li>
+                        <li class="<?php echo (isset($_GET['kategori']) && $_GET['kategori'] == 'prt') ? 'active' : ''; ?>">
+                            <a href="peraturan.php?kategori=prt">Peraturan Rumah Tangga</a>
+                        </li>
+                        <li class="<?php echo (isset($_GET['kategori']) && $_GET['kategori'] == 'magang') ? 'active' : ''; ?>">
+                            <a href="peraturan.php?kategori=magang">Peraturan Magang</a>
+                        </li>
+                        <li class="<?php echo (isset($_GET['kategori']) && $_GET['kategori'] == 'keanggotaan') ? 'active' : ''; ?>">
+                            <a href="peraturan.php?kategori=keanggotaan">Peraturan Keanggotaan</a>
+                        </li>
+                        <li class="<?php echo (isset($_GET['kategori']) && $_GET['kategori'] == 'perpindahan') ? 'active' : ''; ?>">
+                            <a href="peraturan.php?kategori=perpindahan">Peraturan Perpindahan</a>
+                        </li>
                     </ul>
                 </li>
 
                 <!-- STRUKTUR -->
-                <li>
+                <li class="<?php echo isActive('struktur_pengurus.php'); ?>">
                     <a href="struktur_pengurus.php">
                         <span>
                             <i class="fa-solid fa-sitemap"></i>
@@ -423,7 +469,7 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
                 </li>
 
                 <!-- KELOLA LAYANAN -->
-                <li class="<?= basename($_SERVER['PHP_SELF']) == 'kelola_layanan.php' ? 'active' : '' ?>">
+                <li class="<?php echo isActive('kelola_layanan.php'); ?>">
                     <a href="kelola_layanan.php">
                         <span>
                             <i class="fa-solid fa-pen-to-square"></i>
@@ -439,17 +485,23 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
                             <i class="fa-solid fa-hand-holding-heart"></i>
                             Layanan
                         </span>
-                        <i class="fa-solid fa-chevron-down arrow"></i>
+                        <i class="fa-solid fa-chevron-down arrow <?php echo isLayananActive() ? 'rotate' : ''; ?>"></i>
                     </a>
-                    <ul id="menu-layanan" class="sub-submenu">
-                        <li><a href="layanan_pkpa.php">PKPA</a></li>
-                        <li><a href="layanan_upa.php">UPA</a></li>
-                        <li><a href="layanan_sumpah.php">Pengangkatan & Sumpah</a></li>
+                    <ul id="menu-layanan" class="sub-submenu <?php echo isLayananActive() ? 'show-menu' : ''; ?>">
+                        <li class="<?php echo isActive('layanan_pkpa.php'); ?>">
+                            <a href="layanan_pkpa.php">PKPA</a>
+                        </li>
+                        <li class="<?php echo isActive('layanan_upa.php'); ?>">
+                            <a href="layanan_upa.php">UPA</a>
+                        </li>
+                        <li class="<?php echo isActive('layanan_sumpah.php'); ?>">
+                            <a href="layanan_sumpah.php">Pengangkatan & Sumpah</a>
+                        </li>
                     </ul>
                 </li>
 
                 <!-- GALERI -->
-                <li>
+                <li class="<?php echo isActive('galeri.php'); ?>">
                     <a href="galeri.php">
                         <span>
                             <i class="fa-solid fa-image"></i>
@@ -462,7 +514,7 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
         </li>
 
         <!-- DATA ADVOKAT -->
-        <li class="<?= basename($_SERVER['PHP_SELF']) == 'data_advokat.php' ? 'active' : '' ?>">
+        <li class="<?php echo isActive('data_advokat.php'); ?>">
             <a href="data_advokat.php">
                 <span>
                     <i class="fa-solid fa-users-viewfinder"></i>
@@ -472,7 +524,7 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
         </li>
 
         <!-- RUNNING TEXT -->
-        <li class="<?= basename($_SERVER['PHP_SELF']) == 'kelola_running_text.php' ? 'active' : '' ?>">
+        <li class="<?php echo isActive('kelola_running_text.php'); ?>">
             <a href="kelola_running_text.php">
                 <span>
                     <i class="fa-solid fa-scroll"></i>
@@ -482,7 +534,7 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
         </li>
 
         <!-- VERIFIKASI ADMIN (DENGAN BADGE) -->
-        <li class="<?= basename($_SERVER['PHP_SELF']) == 'verifikasi_admin.php' ? 'active' : '' ?>">
+        <li class="<?php echo isActive('verifikasi_admin.php'); ?>">
             <a href="verifikasi_admin.php">
                 <span>
                     <i class="fa-solid fa-user-shield"></i>
@@ -523,34 +575,4 @@ $base_admin = '/WEB-DPC-PERADI-PONTIANAK/admin/';
             arrow.classList.toggle("rotate");
         }
     }
-
-    /**
-     * Auto-close other dropdowns when opening new one
-     * (Optional - Uncomment jika ingin hanya 1 dropdown terbuka)
-     */
-    /*
-    function toggleMenu(id, element) {
-        var menu = document.getElementById(id);
-        var isCurrentlyOpen = menu.classList.contains("show-menu");
-        
-        // Close all submenus
-        document.querySelectorAll('.submenu, .sub-submenu').forEach(function(submenu) {
-            submenu.classList.remove('show-menu');
-        });
-        
-        // Reset all arrows
-        document.querySelectorAll('.arrow').forEach(function(arrow) {
-            arrow.classList.remove('rotate');
-        });
-        
-        // Toggle current menu if it wasn't open
-        if (!isCurrentlyOpen) {
-            menu.classList.add("show-menu");
-            var arrow = element.querySelector(".arrow");
-            if (arrow) {
-                arrow.classList.add("rotate");
-            }
-        }
-    }
-    */
 </script>
